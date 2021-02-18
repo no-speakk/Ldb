@@ -5,6 +5,7 @@ namespace Modules\Ldb\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Ldb\Entities\Category;
 
 class LdbController extends Controller
 {
@@ -14,7 +15,8 @@ class LdbController extends Controller
      */
     public function index()
     {
-        return view('ldb::index');
+        $categories = Category::all();
+        return view('ldb::index', ['categories' => $categories]);
     }
 
     /**

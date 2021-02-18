@@ -13,6 +13,11 @@
     <list default="true" id="443c3b76-8884-443c-b43c-c5fdbc44512a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Ldb/Http/Controllers/LdbController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Ldb/Http/Controllers/LdbController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Ldb/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Ldb/Resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Ldb/Resources/views/layouts/master.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Ldb/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Ldb/Routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Ldb/Tests/LdbTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Ldb/Tests/LdbTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +158,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Ldb/Tests/Feature" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel56" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -164,6 +169,7 @@
       <recent name="C:\laragon\www\Ldb\tests" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\Ldb\Modules\Ldb\Resources\views" />
       <recent name="C:\laragon\www\Ldb\Modules\Ldb\Tests\Feature" />
       <recent name="C:\laragon\www\Ldb\resources\views\admin" />
       <recent name="C:\laragon\www\Ldb" />
@@ -202,21 +208,25 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1613652106406">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1613662599897">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1613652106406" />
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1613662599897" />
     <state x="822" y="156" key="RollbackChangesDialog" timestamp="1613652752557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="822" y="156" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1613652752557" />
+    <state x="668" y="125" width="583" height="789" key="find.popup" timestamp="1613663017727">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="668" y="125" width="583" height="789" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613663017727" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1613496704627">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613496704627" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613660065192">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613662593033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613660065192" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1613662593033" />
   </component>
 </project>

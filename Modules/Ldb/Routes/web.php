@@ -12,5 +12,5 @@
 */
 
 Route::prefix('ldb')->group(function() {
-    Route::get('/', 'LdbController@index');
+    Route::get('/', 'LdbController@index')->name('ldb.index');
 });
