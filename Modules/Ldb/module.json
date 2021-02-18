@@ -1,0 +1,13 @@
+{
+    "name": "Ldb",
+    "alias": "ldb",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Ldb\\Providers\\LdbServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

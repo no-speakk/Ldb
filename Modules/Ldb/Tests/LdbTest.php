@@ -1,18 +1,17 @@
 <?php
 
-namespace Tests\Feature;
+namespace Modules\Ldb\Tests;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class LdbTest extends TestCase
 {
     /**
      * A basic test example.
      *
-     * @return void
+     * @test
      */
-    public function testBasicTest()
+    public function sampleTest()
     {
         $response = $this->get('/');
 
