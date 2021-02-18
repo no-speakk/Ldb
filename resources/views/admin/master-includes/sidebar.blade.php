@@ -22,31 +22,36 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <li class="nav-item has-treeview menu-open">
-                        <a href="/inventory" class="nav-link active">
+                    {{-- dashboard --}}
+                    <li class="nav-item">
+                        <a href="{{ route('admin.index') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                داشبورد
+                            </p>
+                        </a>
+                    </li>
+                    {{-- laravel --}}
+                    <li class="nav-item has-treeview {{ request()->is('ldb*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('ldb*') ? 'active' : '' }}">
                             <i class="nav-icon fa fa-building"></i>
                             <p>
-                                منوی اول
+                                لاراول
                                 <i class="right fa fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            {{-- new project --}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ request()->is('inventory') ? 'active' : '' }}">
+                                <a href="{{ route('ldb.new-project') }}" class="nav-link {{ request()->is('ldb/new-project') ? 'active' : '' }}">
                                     <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>زیرمنوی۱</p>
+                                    <p>پروژه جدید</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ request()->is('inventory/create') ? 'active' : '' }}">
+                                <a href="{{ route('ldb.front') }}" class="nav-link {{ request()->is('ldb/front') ? 'active' : '' }}">
                                     <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>زیرمنو۲</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link {{ request()->is('inventory/archive') ? 'active' : '' }}">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>زیرمنو۳</p>
+                                    <p>فرانت</p>
                                 </a>
                             </li>
                         </ul>

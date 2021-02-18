@@ -13,6 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.starter-kit.blank');
-});
+Route::view('/', 'admin.index')->name('admin.index');
