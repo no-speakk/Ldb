@@ -34406,23 +34406,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/assets/sass/admin.scss":
-/*!******************************************!*\
-  !*** ./resources/assets/sass/admin.scss ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./resources/assets/sass/app.scss":
-/*!****************************************!*\
-  !*** ./resources/assets/sass/app.scss ***!
-  \****************************************/
+/***/ "./resources/assets/css/admin.scss":
+/*!*****************************************!*\
+  !*** ./resources/assets/css/admin.scss ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37354,8 +37341,7 @@ process.umask = function() { return 0; };
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./resources/assets/js/app.js"],
-/******/ 			["./resources/assets/sass/admin.scss"],
-/******/ 			["./resources/assets/sass/app.scss"]
+/******/ 			["./resources/assets/css/admin.scss"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

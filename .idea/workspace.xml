@@ -11,22 +11,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="443c3b76-8884-443c-b43c-c5fdbc44512a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/assets/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/starter-kit/all.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/starter-kit/blank.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/starter-kit/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/starter-kit/multi-form-insert.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/passwords.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/admin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/admin.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/admin/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/admin/adminlte.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/admin/adminlte.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/admin/adminlte.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/admin/bootstrap-rtl.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/admin/bootstrap-rtl.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/admin/custom-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/admin/custom-style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Black.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Black.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Black.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Black.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Black.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Black.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Black.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Black.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Bold.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Bold.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Bold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Bold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Bold.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Bold.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Bold.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Light.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Light.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Light.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Light.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Light.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Light.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Light.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Medium.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Medium.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Medium.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Medium.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Medium.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Medium.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Medium.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Medium.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Thin.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Thin.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Thin.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Thin.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Thin.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Thin.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir-Thin.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir-Thin.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir.eot" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir.woff" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/assets/sass/fonts/Vazir.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/fonts/Vazir.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
