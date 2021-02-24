@@ -10,10 +10,10 @@ class LdbTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function something()
+    public function first_test_case()
     {
-        $this->get(route('ldb.create'))
+        $this->get(route('ldb.new-project'))
             ->assertSuccessful()
-            ->assertViewIs('ldb::create');
+            ->assertViewIs('ldb::laravel.new-project');
     }
 }

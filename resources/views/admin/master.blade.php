@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/plugins/select2/select2.min.css">
+    <!-- highlight -->
+    <link rel="stylesheet" href="/plugins/prism/prism.css">
+    <!-- lightgallery -->
+    <link rel="stylesheet" href="/plugins/lightgallery/lightgallery.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     {!! $custom_css ?? '' !!}
@@ -100,6 +104,27 @@
 <script src="/plugins/select2/select2.full.min.js"></script>
 <!-- Jquery Mask Plugin -->
 <script src="/plugins/jquery-mask/jquery.mask.min.js"></script>
+<!-- Prism -->
+<script src="/plugins/prism/prism.js"></script>
+<!-- lightgallery -->
+<script src="/plugins/lightgallery/lightgallery.min.js"></script>
+<script src="/plugins/lightgallery/lg-thumbnail.min.js"></script>
+<script src="/plugins/lightgallery/lg-autoplay.min.js"></script>
+<script src="/plugins/lightgallery/lg-fullscreen.min.js"></script>
+<script src="/plugins/lightgallery/lg-rotate.min.js"></script>
+<script src="/plugins/lightgallery/lg-share.min.js"></script>
+<script src="/plugins/lightgallery/lg-video.min.js"></script>
+<script src="/plugins/lightgallery/lg-zoom.min.js"></script>
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: 'a'
+    });
+</script>
+<!-- ckeditor -->
+<script src="/plugins/ckeditor4/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor1');
+</script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin.js') }}"></script>
 {!! $custom_js ?? '' !!}

@@ -44,13 +44,13 @@
                             {{-- new project --}}
                             <li class="nav-item">
                                 <a href="{{ route('ldb.new-project') }}" class="nav-link {{ request()->is('ldb/new-project') ? 'active' : '' }}">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>پروژه جدید</p>
+                                    <i class="fa fa-circle-o nav-icon mr-4"></i>
+                                    <p>شروع پروژه جدید</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('ldb.front') }}" class="nav-link {{ request()->is('ldb/front') ? 'active' : '' }}">
-                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <i class="fa fa-circle-o nav-icon mr-4"></i>
                                     <p>فرانت</p>
                                 </a>
                             </li>
