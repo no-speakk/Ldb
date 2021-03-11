@@ -43,7 +43,7 @@
                         <ul class="nav nav-treeview">
                             {{-- new project --}}
                             <li class="nav-item">
-                                <a href="{{ route('ldb.new-project') }}" class="nav-link {{ request()->is('ldb/new-project') ? 'active' : '' }}">
+                                <a href="{{ route('ldb.new.project') }}" class="nav-link {{ request()->is('ldb/new/project') ? 'active' : '' }}">
                                     <i class="fa fa-circle-o nav-icon mr-4"></i>
                                     <p>شروع پروژه جدید</p>
                                 </a>
@@ -52,6 +52,12 @@
                                 <a href="{{ route('ldb.front') }}" class="nav-link {{ request()->is('ldb/front') ? 'active' : '' }}">
                                     <i class="fa fa-circle-o nav-icon mr-4"></i>
                                     <p>فرانت</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('ldb.page.builder') }}" class="nav-link {{ request()->is('ldb/page/builder') ? 'active' : '' }}">
+                                    <i class="fa fa-circle-o nav-icon mr-4"></i>
+                                    <p>Page Builder</p>
                                 </a>
                             </li>
                         </ul>

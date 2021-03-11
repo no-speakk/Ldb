@@ -18,4 +18,9 @@ class LdbController extends Controller
         return view('ldb::laravel.front');
     }
 
+    public function pageBuilder()
+    {
+        return view('ldb::laravel.page-builder');
+    }
+
 }

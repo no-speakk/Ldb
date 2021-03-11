@@ -30,6 +30,55 @@
     <link rel="stylesheet" href="/plugins/lightgallery/lightgallery.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <style>
+        #page .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+            color: white !important;
+        }
+        #page .card-light:not(.card-outline) .card-header {
+            background-color: #f3f5f7;
+        }
+        .callout.callout-info {
+            border-right-color: #007bff;
+            border-left-color: #007bff;
+        }
+        .callout {
+            border-right: 5px solid #eee;
+            box-shadow: 0 1px 19px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+        }
+        pre {
+            direction: ltr !important;
+        }
+        .token.space:before {
+            content: '';
+        }
+        .token.lf:before {
+            content: '';
+        }
+        .my-keyword {
+            font-family: source-code-pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+            font-weight: 500;
+            line-height: 1.9;
+            background: #fbfbfd;
+            box-shadow: 0 1px 1px rgb(0 0 0 / 8%);
+            color: #ca473f;
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+            display: inline-flex;
+            padding: 0 .125rem;
+            max-width: 100%;
+            overflow-x: auto;
+            font-size: .8rem;
+            direction: ltr;
+        }
+        .lg-outer.lg-thumb-open .lg-thumb-outer {
+            direction: ltr;
+        }
+        .lg-outer .lg-thumb-item.active {
+            border-width: thick;
+        }
+    </style>
     {!! $custom_css ?? '' !!}
 </head>
 <body class="hold-transition sidebar-mini">
@@ -63,7 +112,11 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                {{ $slot }}
+                <div class="row">
+                    <div class="col-sm-12" id="page">
+                        {{ $slot }}
+                    </div>
+                </div>
             </div>
         </section>
         <!-- /.content -->
@@ -123,7 +176,9 @@
 <!-- ckeditor -->
 <script src="/plugins/ckeditor4/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('editor1');
+    $.each($('.ck-edit'), function( index, value ) {
+        CKEDITOR.replace(this.id);
+    });
 </script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin.js') }}"></script>
