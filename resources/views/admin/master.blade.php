@@ -24,8 +24,10 @@
     <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/plugins/select2/select2.min.css">
-    <!-- highlight -->
+    <!-- prism -->
     <link rel="stylesheet" href="/plugins/prism/prism.css">
+    <!-- jquery UI -->
+    <link rel="stylesheet" href="/plugins/jQueryUI/jquery-ui.min.css">
     <!-- lightgallery -->
     <link rel="stylesheet" href="/plugins/lightgallery/lightgallery.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -40,6 +42,10 @@
         .callout.callout-info {
             border-right-color: #007bff;
             border-left-color: #007bff;
+        }
+        .callout.callout-danger {
+            border-right-color: #bd2130;
+            border-left-color: #bd2130;
         }
         .callout {
             border-right: 5px solid #eee;
@@ -124,9 +130,6 @@
 
     @include('admin.master-includes.footer')
 
-    {{-- tanzimat rang bandi ghaleb --}}
-    <aside class="control-sidebar control-sidebar-dark">
-    </aside>
 </div>
 
 <!-- jQuery -->
