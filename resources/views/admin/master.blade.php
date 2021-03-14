@@ -134,8 +134,8 @@
 
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="/plugins/jQueryUI/jquery-ui.min.js"></script>
+<!-- jQuery UI -->
+<script src="/plugins/jQueryUI/jquery-ui.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
