@@ -15,7 +15,7 @@
             }
             #page-temp {
                 border: 4px solid #d8dbde;
-                padding: 45px;
+                padding: 10px 40px;
             }
             .border-blue {
                 border-color: #029ef3 !important;
@@ -23,11 +23,14 @@
             }
             .temp-col-dashed {
                 border: 3px solid #d5d8db;
-                padding: 45px;
+                padding: 10px 40px;
                 min-height: 200px;
                 border-radius: 5px;
                 margin-top: 20px;
                 margin-bottom: 20px;
+            }
+            .empty-droppable-row {
+                height: 35px;
             }
         </style>
     @endslot
@@ -68,7 +71,7 @@
 
         {{-- ino badan ke form builder ro tabdil kardam be sidebar-left(ye page khali mese elementor) mishe hamon #page --}}
         <div class="col-9 text-left ltr" style="min-height: 600px" id="page-temp">
-
+            <div class="row empty-droppable-row"></div>
         </div>
     </section>
 
@@ -94,7 +97,7 @@
                 // Drag
                 $(".ldb-draggable").draggable({
                     cursor: "move",
-                    cursorAt: { top: 56, left: 56 },
+                    cursorAt: { top: 85, left: 85 },
                     opacity: 0.7,
                     helper: "clone",
                     revert: "invalid",
@@ -111,11 +114,12 @@
                             // har elementi drag konam dynamic methodesh ro seda mizanam
                             const builder_method = ui.draggable.data('ldb-builder-element');
                             $(this).append(LDB_BUILDER[builder_method]());
-                            makeDrop($(".temp-col-dashed"));
+                            makeDrop($(".temp-col-dashed, .empty-droppable-row"));
                         },
                     });
                 }
                 makeDrop($("#page-temp"));
+                makeDrop($(".empty-droppable-row"));
             });
         </script>
 
