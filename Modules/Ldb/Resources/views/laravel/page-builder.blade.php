@@ -69,9 +69,9 @@
             </section>
         </div>
 
-        {{-- ino badan ke form builder ro tabdil kardam be sidebar-left(ye page khali mese elementor) mishe hamon #page --}}
+        {{-- page-temp --}}
         <div class="col-9 text-left ltr" style="min-height: 600px" id="page-temp">
-            <div class="row empty-droppable-row"></div>
+{{--            <div class="row empty-droppable-row"></div>--}}
         </div>
     </section>
 
@@ -101,11 +101,16 @@
                     opacity: 0.7,
                     helper: "clone",
                     revert: "invalid",
+                    tolerance : "pointer",
+                    // connectToSortable: "#page-temp",
                 });
+
+                $("#page-temp").sortable();
+                $("#page-temp").disableSelection();
 
                 // Drop
                 function makeDrop(target) {
-                    target.droppable({
+                        target.droppable({
                         greedy: true,
                         classes: {
                             "ui-droppable-hover": "border-blue",  // vaghti ba drag omadim ruye drop-zone
@@ -113,7 +118,10 @@
                         drop: function(event, ui) {
                             // har elementi drag konam dynamic methodesh ro seda mizanam
                             const builder_method = ui.draggable.data('ldb-builder-element');
-                            $(this).append(LDB_BUILDER[builder_method]());
+                            if (builder_method) {
+                                $(this).append(LDB_BUILDER[builder_method]());
+                            }
+
                             makeDrop($(".temp-col-dashed, .empty-droppable-row"));
                         },
                     });
