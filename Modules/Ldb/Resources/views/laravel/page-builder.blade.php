@@ -1,4 +1,4 @@
-@component('admin.master')
+@component('admin.master-pagebuilder')
     @slot('title') Page Builder @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ '#' }}">داشبورد</a></li>
@@ -7,32 +7,25 @@
 
     @slot('custom_css')
         <style>
-            #sticky-left-sidebar {
-                /*left: -275px;*/
-                left: 0;
-                width: 280px;
-                min-height: 400px;
-                transition: all 0.2s ease;
-                z-index: 10;
-                color: #C2C7D0!important;
-            }
-            #sticky-left-sidebar .sidebar-divider {
-                background-color: #4f5962;
-            }
-            #sticky-left-sidebar .builder-element{
-                user-select: none;
-            }
-            #sticky-left-sidebar .builder-element:hover{
-                border: 2px solid grey;
-                border-radius: 5px;
-                cursor: pointer;
-            }
             #dropArea {
+                min-height: 800px;
                 border: 4px solid #d8dbde;
                 padding: 40px;
+                background-color: #f4f6f9;
+            }
+            #dropArea .invis {
+                padding: 0px !important;
+                border: 4px dashed #f4f6f9;
+                color: #f4f6f9 ;
+            }
+            #dropArea .invis:hover {
+                border-color: #d7dadd ;
+                color: darkgray ;
+            }
+            #dropArea .invis h6 {
+                margin: 0;
             }
             #dropArea .btn-add-element {
-                color: darkgray;
                 cursor: pointer;
                 user-select: none;
             }
@@ -41,6 +34,7 @@
             }
             #dropArea .element-unselected {
                 border: 4px dashed #d7dadd;
+                color: darkgray;
                 padding: 50px;
             }
             #dropArea .element-selected {
@@ -49,40 +43,48 @@
             #dropArea .empty-row {
                 border: 3px solid #d7dadd;
                 padding: 50px;
-                margin-top: 40px;
-                margin-bottom: 40px;
+                margin-top: 5px;
+                margin-bottom: 5px;
             }
             #dropArea .empty-row .empty-col {
                 border: 4px dashed #d7dadd;
                 padding: 50px;
             }
+            #dropArea .element-is-editable:hover {
+                outline: 5px dashed orange;
+            }
+            #dropArea .element-editing {
+                outline: 5px solid orange !important;
+            }
         </style>
     @endslot
 
     <section class="row">
-        <div class="p-3 bg-dark position-fixed text-left" id="sticky-left-sidebar" dir="ltr">
-            <section class="row">
-                <h6 class="m-auto">Some Icon</h6>
-            </section>
-        </div>
-
-        <div class="col-9 text-left ltr" style="min-height: 600px" id="dropArea"></div>
+        <div class="col-12 text-left ltr" id="dropArea"></div>
     </section>
 
     @slot('custom_js')
         <script>
             $(function(){
                 LDB_BUILDER = {
-                    show_btn_addElement : () => {
+                    show_btn_addElement : (props = {}) => {
+                        let is_invis = props.invis || false;
+
+                        if (is_invis) {
+                            return `<div class="row mt-2 mb-2">
+                                    <div class="col-12 invis btn-add-element text-center"><h6>Add Element +</h6></div>
+                                </div>`;
+                        }
+
                         return `<div class="row">
-                                    <div class="col-12 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
+                                    <div class="col-12 btn-add-element text-center element-unselected mt-4"><h5>Add Element +</h5></div>
                                 </div>`;
                     },
                     show_leftSidebar_elements : (elements = []) => {
                         let asset_path = @json(asset('img/ldb/laragon2.png'));
-                        let html = `<h6 class="text-center">Add New Element</h6><hr class="sidebar-divider"><div class="row">`;
+                        let html = `<h6 class="text-center">Add New Element</h6><div class="sidebar-divider"></div><div class="row">`;
                         elements.forEach(function(element) {
-                            html += `<div class="col-6 builder-element" data-ldb-builder-element="${element}">
+                            html += `<div class="col-6 preview-element" data-ldb-preview-element="${element}">
                                         <div class="row text-center">
                                             <div class="col-12">
                                                 <img class="mt-2 mb-2 img-thumbnail" style="width: 120px;height: 120px;" src="${asset_path}" alt="">
@@ -119,13 +121,13 @@
 
                         let html;
                         if (is_child) {
-                            html = `<div class="callout callout-${border_color}">
+                            html = `<div class="callout callout-${border_color} element-is-editable">
                                         <h5 class="text-${title_color}"><i class="icon fa ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right" }"></i> ${title_text}</h5>${text}
                                     </div>`
                         } else {
                             html = `<section class="row">
                                         <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"} ${css_class}" dir="${dir}">
-                                            <div class="callout callout-${border_color}">
+                                            <div class="callout callout-${border_color} element-is-editable">
                                                 <h5 class="text-${title_color}"><i class="icon fa ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right"}"></i> ${title_text}</h5>${text}
                                             </div>
                                         </div>
@@ -137,7 +139,7 @@
                         // let css_class = props.css_class || "";
                         // let dir = props.dir || "rtl";
 
-                        return `<section class="row empty-row" data-ldb-builder-element="empty-row">
+                        return `<section class="row empty-row" data-ldb-preview-element="empty-row">
                                     <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
                                     <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
                                 </section>`;
@@ -149,7 +151,7 @@
         <script>
             $(function (){
                 let dropArea = $("#dropArea");
-                let left_sidebar = $("#sticky-left-sidebar");
+                let left_sidebar = $("#sidebar-left");
                 let selected_element;
 
                 // vaghti hichi to safhe nabud, btn-add-element generate kon
@@ -157,10 +159,14 @@
                     dropArea.html(LDB_BUILDER.show_btn_addElement());
                 }
 
+                //---------------------------------------------------
+                //                 Add Element +
+                //---------------------------------------------------
                 // select Add Element +
                 $(dropArea).on("click", ".btn-add-element" , function (e){
                     // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
                     $(".btn-add-element").removeClass("element-selected text-primary");
+                    $(".element-is-editable").removeClass("element-editing");
                     $(this).addClass("element-selected text-primary");
 
                     if ($(this).parent().hasClass("empty-row")) {
@@ -178,19 +184,19 @@
                         //event = the click event
                         //$(this) = the '.target-element' that is firing this function
                         $(this).removeClass("element-selected text-primary");
-                        left_sidebar.html($('<h6 class="text-center">Some Icon</h6>'));
+                        left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
                         selected_element = undefined;
-                    }, "#sticky-left-sidebar, .btn-add-element");
+                    }, "#sidebar-left, .btn-add-element");
                 }
                 emptyRow_unselect_listener();
 
-                // create Add Element +
-                left_sidebar.on("click", ".builder-element" , function (e){
+                // create element from left-sidebar
+                left_sidebar.on("click", ".preview-element" , function (e){
                     // $(this) = leftSidebar ,,, selectedRow = dropArea selected element
                     let parentRow = selected_element.parent();
                     if (parentRow.hasClass("empty-row")) {
                         let col_width = 'col-' + (12 / parentRow.children().length);
-                        let newElement_mockup = LDB_BUILDER[$(this).data('ldb-builder-element')]();
+                        let newElement_mockup = LDB_BUILDER[$(this).data('ldb-preview-element')]({text : "this is created from child"});
                         let removedParent_from_newElement = newElement_mockup
                             .replace('<section class="row">', '')
                             .replace('</section>', '')
@@ -199,18 +205,58 @@
                         // remove attr and style from parentRow after all cols filled
                         if (parentRow.children('.btn-add-element').length === 0) {
                             parentRow.removeClass("empty-row");
-                            parentRow.removeAttr("data-ldb-builder-element");
+                            parentRow.removeAttr("data-ldb-preview-element");
                         }
                     } else {
-                        parentRow.before(LDB_BUILDER[$(this).data('ldb-builder-element')]());
+                        parentRow.before(LDB_BUILDER[$(this).data('ldb-preview-element')]());
+                        parentRow.prev().before(LDB_BUILDER.show_btn_addElement({invis : true}));
                     }
                     // attach fucking listener to new elements
                     emptyRow_unselect_listener();
+                    editableElement_unselect_listener();
                     // select new element
                     selected_element = parentRow.prev();
                     // click on new element
                     $('body').click();
+                    $("#dropArea").on('hover', '#dropArea > div.row.mt-2.mb-2 > div', function() {
+                        console.log('kose nanat');
+                        $(this).css("background-color",e.type === "mouseenter"?"red":"transparent")
+                    });
                 });
+                //---------------------------------------------------
+                //---------------------------------------------------
+
+
+                //---------------------------------------------------
+                //                 Edit Element
+                //---------------------------------------------------
+                // select editable element
+                $(dropArea).on("click", ".element-is-editable" , function (e){
+                    // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
+                    $(".btn-add-element").removeClass("element-selected text-primary");
+                    $(".element-is-editable").removeClass("element-editing");
+                    $(this).addClass("element-editing");
+                    // ye class edit mode bayad ezf konam
+
+                    // if ($(this).parent().hasClass("empty-row")) {
+                    //     left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['callout']));
+                    // } else {
+                    //     left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['row', 'callout']));
+                    // }
+                    selected_element = $(this);
+                });
+
+                // unselect editable element
+                function editableElement_unselect_listener (){
+                    $('.element-is-editable').outsideClick(function(event){
+                        $(this).removeClass("element-editing");
+                        // left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
+                        selected_element = undefined;
+                    }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element");
+                }
+                editableElement_unselect_listener();
+                //---------------------------------------------------
+                //---------------------------------------------------
             });
         </script>
 
