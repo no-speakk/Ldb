@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="/plugins/jQueryUI/jquery-ui.min.css">
     <!-- lightgallery -->
     <link rel="stylesheet" href="/plugins/lightgallery/lightgallery.min.css">
+    <!-- Bootstrap Toggle -->
+    <link rel="stylesheet" href="/plugins/bootstrap-toggle/bootstrap4-toggle.min.css">
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <style>
@@ -89,9 +92,9 @@
         /* LDB styles */
         #sidebar-left {
             padding: 15px;
-            min-width: 280px;
+            min-width: 560px;
             color: #C2C7D0;
-            left: 0;
+            left: -560px;
             right: auto;
             direction: ltr;
         }
@@ -105,9 +108,19 @@
         }
         #sidebar-right {
             padding: 15px;
-            min-width: 280px;
+            min-width: 560px;
+            right: -560px;
             color: #C2C7D0;
             direction: ltr;
+        }
+        #sidebar-right span.select2 {
+            width: 100% !important;
+        }
+        #sidebar-right div.toggle {
+            width: 100% !important;
+        }
+        .select2-selection {
+            text-align: left;
         }
         .sidebar-divider {
             background-color: #bec0cb;
@@ -115,8 +128,8 @@
             margin: 10px 0;
         }
         .content-wrapper {
-            margin-right: 280px;
-            margin-left: 280px;
+            margin-right: 0;
+            margin-left: 0;
         }
     </style>
     {!! $custom_css ?? '' !!}
@@ -130,6 +143,82 @@
     <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
         <h6 class="text-center">Properties</h6>
         <div class="sidebar-divider"></div>
+
+        <!-- direction -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Direction :</h6>
+            </div>
+            <div class="col-9">
+                <input type="checkbox" data-toggle="toggle" checked data-on="RTL" data-off="LTR" data-onstyle="success" data-offstyle="danger">
+            </div>
+        </div>
+        <!-- elementCustomCss -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Css Class :</h6>
+            </div>
+            <div class="col-9">
+                <select class="select2-taggable" multiple="multiple">
+                    <option selected="selected">class1</option>
+                    <option>class2</option>
+                    <option selected="selected">class3</option>
+                </select>
+            </div>
+        </div>
+        <!-- textarea -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Content Text :</h6>
+            </div>
+            <div class="col-9">
+                <textarea name="ck-edit1" class="ck-edit" id="ck-edit1" rows="10" cols="80">This is my textarea to be replaced with CKEditor 4.</textarea>
+            </div>
+        </div>
+        <!-- calloutBorderColor -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Border Color :</h6>
+            </div>
+            <div class="col-9">
+                <select class="select2-single">
+                    <option value="one">First</option>
+                    <option value="two">Second</option>
+                    <option value="three">Third</option>
+                </select>
+            </div>
+        </div>
+        <!-- textColor -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Text Color :</h6>
+            </div>
+            <div class="col-9">
+                <select class="select2-single">
+                    <option value="one">First</option>
+                    <option value="two">Second</option>
+                    <option value="three">Third</option>
+                </select>
+            </div>
+        </div>
+        <!-- fa-icon -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Title Icon :</h6>
+            </div>
+            <div class="col-9">
+                <input class="form-control" type="text" placeholder="Example : fa-info">
+            </div>
+        </div>
+        <!-- text -->
+        <div class="row mt-3">
+            <div class="col-3 mt-2 text-left">
+                <h6>Title text :</h6>
+            </div>
+            <div class="col-9">
+                <input class="form-control" type="text">
+            </div>
+        </div>
     </aside>
 
     <!-- Sidebar Left -->
@@ -185,6 +274,8 @@
 <script src="/plugins/jquery-mask/jquery.mask.min.js"></script>
 <!-- Prism -->
 <script src="/plugins/prism/prism.js"></script>
+<!-- Bootstrap Toggle -->
+<script src="/plugins/bootstrap-toggle/bootstrap4-toggle.min.js"></script>
 <!-- lightgallery -->
 <script src="/plugins/lightgallery/lightgallery.min.js"></script>
 <script src="/plugins/lightgallery/lg-thumbnail.min.js"></script>
@@ -206,6 +297,7 @@
         CKEDITOR.replace(this.id);
     });
 </script>
+
 <!-- AdminLTE App -->
 <script src="{{ asset('js/admin.js') }}"></script>
 {!! $custom_js ?? '' !!}

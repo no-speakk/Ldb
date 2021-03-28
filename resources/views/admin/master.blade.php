@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="/plugins/jQueryUI/jquery-ui.min.css">
     <!-- lightgallery -->
     <link rel="stylesheet" href="/plugins/lightgallery/lightgallery.min.css">
+    <!-- Bootstrap Toggle -->
+    <link rel="stylesheet" href="/plugins/bootstrap-toggle/bootstrap4-toggle.min.css">
+
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <style>
@@ -162,6 +165,8 @@
 <script src="/plugins/jquery-mask/jquery.mask.min.js"></script>
 <!-- Prism -->
 <script src="/plugins/prism/prism.js"></script>
+<!-- Bootstrap Toggle -->
+<script src="/plugins/bootstrap-toggle/bootstrap4-toggle.min.js"></script>
 <!-- lightgallery -->
 <script src="/plugins/lightgallery/lightgallery.min.js"></script>
 <script src="/plugins/lightgallery/lg-thumbnail.min.js"></script>
