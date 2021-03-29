@@ -90,6 +90,9 @@
 
 
         /* LDB styles */
+        .main-sidebar {
+            overflow-y: auto;
+        }
         #sidebar-left {
             padding: 15px;
             min-width: 560px;
@@ -143,82 +146,7 @@
     <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
         <h6 class="text-center">Properties</h6>
         <div class="sidebar-divider"></div>
-
-        <!-- direction -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Direction :</h6>
-            </div>
-            <div class="col-9">
-                <input type="checkbox" data-toggle="toggle" checked data-on="RTL" data-off="LTR" data-onstyle="success" data-offstyle="danger">
-            </div>
-        </div>
-        <!-- elementCustomCss -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Css Class :</h6>
-            </div>
-            <div class="col-9">
-                <select class="select2-taggable" multiple="multiple">
-                    <option selected="selected">class1</option>
-                    <option>class2</option>
-                    <option selected="selected">class3</option>
-                </select>
-            </div>
-        </div>
-        <!-- textarea -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Content Text :</h6>
-            </div>
-            <div class="col-9">
-                <textarea name="ck-edit1" class="ck-edit" id="ck-edit1" rows="10" cols="80">This is my textarea to be replaced with CKEditor 4.</textarea>
-            </div>
-        </div>
-        <!-- calloutBorderColor -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Border Color :</h6>
-            </div>
-            <div class="col-9">
-                <select class="select2-single">
-                    <option value="one">First</option>
-                    <option value="two">Second</option>
-                    <option value="three">Third</option>
-                </select>
-            </div>
-        </div>
-        <!-- textColor -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Text Color :</h6>
-            </div>
-            <div class="col-9">
-                <select class="select2-single">
-                    <option value="one">First</option>
-                    <option value="two">Second</option>
-                    <option value="three">Third</option>
-                </select>
-            </div>
-        </div>
-        <!-- fa-icon -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Title Icon :</h6>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text" placeholder="Example : fa-info">
-            </div>
-        </div>
-        <!-- text -->
-        <div class="row mt-3">
-            <div class="col-3 mt-2 text-left">
-                <h6>Title text :</h6>
-            </div>
-            <div class="col-9">
-                <input class="form-control" type="text">
-            </div>
-        </div>
+        <div class="properties-area"></div>
     </aside>
 
     <!-- Sidebar Left -->
@@ -293,9 +221,12 @@
 <!-- ckeditor -->
 <script src="/plugins/ckeditor4/ckeditor.js"></script>
 <script>
-    $.each($('.ck-edit'), function( index, value ) {
-        CKEDITOR.replace(this.id);
-    });
+    function init_all_ckeditor_elements () {
+        $.each($('.ck-edit'), function( index, value ) {
+            CKEDITOR.replace(this.id);
+        });
+    }
+    init_all_ckeditor_elements();
 </script>
 
 <!-- AdminLTE App -->

@@ -84,7 +84,7 @@
                         let asset_path = @json(asset('img/ldb/laragon2.png'));
                         let html = `<h6 class="text-center">Add New Element</h6><div class="sidebar-divider"></div><div class="row">`;
                         elements.forEach(function(element) {
-                            html += `<div class="col-6 preview-element" data-preview-element-type="${element}">
+                            html += `<div class="col-4 preview-element" data-preview-element-type="${element}">
                                         <div class="row text-center">
                                             <div class="col-12">
                                                 <img class="mt-2 mb-2 img-thumbnail" style="width: 120px;height: 120px;" src="${asset_path}" alt="">
@@ -121,14 +121,14 @@
 
                         let html;
                         if (is_child) {
-                            html = `<div class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
+                            html = `<div id="callout-example" class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
                                         <h5 class="text-${title_color}"><i class="icon ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${title_icon}"></i> <span>${title_text}</span></h5>
                                         <div>${text}</div>
                                     </div>`
                         } else {
                             html = `<section class="row">
                                         <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"}" dir="${dir}">
-                                            <div class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
+                                            <div id="callout-example" class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
                                                 <h5 class="text-${title_color}"><i class="icon ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${title_icon}"></i> <span>${title_text}</span></h5>
                                                 <div>${text}</div>
                                             </div>
@@ -188,7 +188,7 @@
                         $(this).removeClass("element-selected text-primary");
                         left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
                         selected_element = undefined;
-                    }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element");
+                    }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
                 }
                 emptyRow_unselect_listener();
 
@@ -234,6 +234,7 @@
                 //---------------------------------------------------
                 // select editable element
                 $(dropArea).on("click", ".element-is-editable" , function (e){
+                    right_sidebar.children(".properties-area").html("");
                     open_rightSidebar();
                     // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
                     $(".btn-add-element").removeClass("element-selected text-primary");
@@ -245,27 +246,28 @@
                     switch (elementType) {
                         case 'callout':
                             elementData = {
+                                id : {type: "id", value: $(this).attr("id")},
                                 direction : {type: "direction", value: $(this).parent().attr("dir")},
                                 css_class : {type: "elementCustomCss", value: $(this).data("css-class").split(/\s+/)},
                                 contentText : {type: "textarea", value: $(this).children("div").html()},
                                 borderColor : {type: "calloutBorderColor", value: $(this).data("border-color")},
                                 titleColor : {type: "textColor", value: $(this).children("h5").attr("class")},
-                                titleIcon : {type: "fa-icon", value: $(this).children("h5").children("i").data("icon")},
+                                titleIcon : {type: "faIcon", value: $(this).children("h5").children("i").data("icon")},
                                 titleText : {type: "text", value: $(this).children("h5").children("span").html()},
                             }
                             break;
-                        case 'something else':
-                            console.log('something else data');
-                            break;
                     }
 
-                    // inja bayad html'e properties ro besazam, be ezaye har property
+                    // append properties to right-sidebar
                     for (let key in elementData) {
-                        console.log(elementData[key].type);
+                        let type = elementData[key].type;
+                        let props = elementData[key].value;
+                        right_sidebar.children(".properties-area").append(MAKE_PROPERTIES[type](props));
                     }
 
-                    // left_sidebar.html(elementProperties);
-
+                    $('.bootstrap-toggle').bootstrapToggle();
+                    init_all_select2_elements();
+                    init_all_ckeditor_elements();
                     selected_element = $(this);
                 });
 
@@ -276,17 +278,21 @@
                         $(this).removeClass("element-editing");
                         // left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
                         selected_element = undefined;
-                    }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element");
+                    }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
                 }
                 editableElement_unselect_listener();
                 //---------------------------------------------------
                 //---------------------------------------------------
 
-                $(".select2-taggable").select2({
-                    tags: true,
-                    tokenSeparators: [',', ' ']
-                });
-                $(".select2-single").select2();
+                function init_all_select2_elements () {
+                    $(".select2-taggable").select2({
+                        tags: true,
+                        tokenSeparators: [',', ' ']
+                    });
+                    $(".select2-single").select2();
+                }
+                init_all_select2_elements();
+
 
                 function open_rightSidebar() {
                     right_sidebar.css("right", "0");
@@ -303,7 +309,209 @@
                     right_sidebar.css("right", "-560px");
                     $("div.content-wrapper").css("margin-right", "0").css("margin-left", "0");
                 }
-                open_rightSidebar();
+
+                function uniqueId() {
+                    return Math.round(new Date().getTime() + (Math.random() * 100));
+                }
+
+
+                MAKE_PROPERTIES = {
+                    id : (value = undefined) => {
+                        let id = (value === undefined) ? {} : {value : value};
+
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Id : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<input>")
+                                                .addClass("form-control")
+                                                .attr({type : "text"})
+                                                .attr(id)
+                                        )
+                                );
+                        return element;
+                    },
+                    direction : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Direction : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<input>")
+                                                .addClass("form-control bootstrap-toggle")
+                                                .attr({
+                                                    type : "checkbox",
+                                                    "data-toggle" : "toggle",
+                                                    checked : true,
+                                                    "data-on" : "RTL",
+                                                    "data-off" : "LTR",
+                                                    "data-onstyle" : "success",
+                                                    "data-offstyle" : "danger",
+                                                })
+                                        )
+                                );
+                        return element;
+                    },
+                    elementCustomCss : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Css Class : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<select></select>")
+                                                .addClass("select2-taggable")
+                                                .attr({
+                                                    multiple : "multiple",
+                                                })
+                                                .append(
+                                                    $('<option selected="selected">class1</option>')
+                                                )
+                                                .append(
+                                                    $('<option>class2</option>')
+                                                )
+                                                .append(
+                                                    $('<option selected="selected">class3</option>')
+                                                )
+                                        )
+                                );
+                        return element;
+                    },
+                    textarea : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Content Text : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<textarea></textarea>")
+                                                .addClass("ck-edit")
+                                                .attr({
+                                                    id : uniqueId(),
+                                                    rows : "10",
+                                                    cols : "80",
+                                                })
+                                                .html("This is my textarea to be replaced with CKEditor 4.")
+                                        )
+                                );
+                        return element;
+                    },
+                    calloutBorderColor : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Border Color : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<select></select>")
+                                                .addClass("select2-single")
+                                                .append(
+                                                    $('<option value="one">First</option>')
+                                                )
+                                                .append(
+                                                    $('<option value="two">Second</option>')
+                                                )
+                                                .append(
+                                                    $('<option value="three">Third</option>')
+                                                )
+                                        )
+                                );
+                        return element;
+                    },
+                    textColor : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Text Color : ")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<select></select>")
+                                                .addClass("select2-single")
+                                                .append(
+                                                    $('<option value="one">First</option>')
+                                                )
+                                                .append(
+                                                    $('<option value="two">Second</option>')
+                                                )
+                                                .append(
+                                                    $('<option value="three">Third</option>')
+                                                )
+                                        )
+                                );
+                        return element;
+                    },
+                    faIcon : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Title Icon :")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<input>")
+                                                .addClass("form-control")
+                                                .attr({type : "text", placeholder: "Example : fa-info"})
+                                        )
+                                );
+                        return element;
+                    },
+                    text : (value = undefined) => {
+                        let element =
+                            $("<div></div>").addClass("row mt-3")
+                                .append(
+                                    $("<div></div>").addClass("col-3 mt-2 text-left")
+                                        .append(
+                                            $("<h6></h6>").html("Title Text :")
+                                        )
+                                )
+                                .append(
+                                    $("<div></div>").addClass("col-9")
+                                        .append(
+                                            $("<input>")
+                                                .addClass("form-control")
+                                                .attr({type : "text"})
+                                        )
+                                );
+                        return element;
+                    },
+                }
 
             });
         </script>
