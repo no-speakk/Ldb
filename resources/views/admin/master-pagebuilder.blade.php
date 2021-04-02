@@ -146,7 +146,7 @@
     <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
         <h6 class="text-center">Properties</h6>
         <div class="sidebar-divider"></div>
-        <div class="properties-area"></div>
+        <form id="form_properties" action=""></form>
     </aside>
 
     <!-- Sidebar Left -->

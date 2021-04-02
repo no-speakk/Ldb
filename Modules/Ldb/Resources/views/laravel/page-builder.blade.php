@@ -102,35 +102,28 @@
                     },
                     callout : (props = {}) => {
                         let is_child = props.is_child || false;
-                        let title_text = props.title_text || "عنوان";
-                        let title_icon = props.title_icon || "fa fa-info";
-                        let title_color = props.title_color || "primary"; // danger, warning
-                        let border_color = props.border_color || "callout-info";  // danger, warning
-                        let text = props.text || "این یک متن است که توسط ckeditor ایجاد شده است";
-                        let css_class = props.css_class || "";
+
+                        let id = props.id || "";
+                        let title = props.title || "عنوان";
+                        let titleIcon = props.titleIcon || "fa fa-info";
+                        let titleColor = props.titleColor || "text-primary"; // danger, warning
+                        let borderColor = props.borderColor || "callout-info";  // danger, warning
+                        let content = props.content || "این یک متن است که توسط ckeditor ایجاد شده است";
+                        let cssClass = props.css_class || "";
                         let dir = props.dir || "rtl";
-                        // const builder_options = {
-                        //     title_text : "Title",
-                        //     title_icon : "fa fa-warning",
-                        //     title_color : "danger",
-                        //     border_color : "callout-danger",
-                        //     text : "this is an text from ekeditor",
-                        //     css_class : "",
-                        //     dir : "ltr",
-                        // };
 
                         let html;
                         if (is_child) {
-                            html = `<div id="callout-example" class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
-                                        <h5 class="text-${title_color}"><i class="icon ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${title_icon}"></i> <span>${title_text}</span></h5>
-                                        <div>${text}</div>
+                            html = `<div id="${id}" class="callout element-is-editable ${borderColor}" data-element-type="callout" data-border-color="${borderColor}" ">
+                                        <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
+                                        <div>${content}</div>
                                     </div>`
                         } else {
                             html = `<section class="row">
                                         <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"}" dir="${dir}">
-                                            <div id="callout-example" class="callout element-is-editable ${border_color} ${css_class}" data-element-type="callout" data-border-color="${border_color}" data-css-class="${css_class}">
-                                                <h5 class="text-${title_color}"><i class="icon ml-2 ${title_icon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${title_icon}"></i> <span>${title_text}</span></h5>
-                                                <div>${text}</div>
+                                            <div id="${id}" class="callout element-is-editable ${borderColor}" data-element-type="callout" data-border-color="${borderColor}" ">
+                                                <h5 class="text-${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
+                                                <div>${content}</div>
                                             </div>
                                         </div>
                                     </section>`
@@ -194,7 +187,6 @@
 
                 // create element from left-sidebar
                 left_sidebar.on("click", ".preview-element" , function (e){
-                    // $(this) = leftSidebar ,,, selectedRow = dropArea selected element
                     let parentRow = selected_element.parent();
                     if (parentRow.hasClass("empty-row")) {
                         let col_width = 'col-' + (12 / parentRow.children().length);
@@ -218,57 +210,28 @@
                     editableElement_unselect_listener();
                     // select new element
                     selected_element = parentRow.prev();
-                    // click on new element
+                    // remove selection
                     $('body').click();
-                    $("#dropArea").on('hover', '#dropArea > div.row.mt-2.mb-2 > div', function() {
-                        console.log('kose nanat');
-                        $(this).css("background-color",e.type === "mouseenter"?"red":"transparent")
-                    });
                 });
-                //---------------------------------------------------
-                //---------------------------------------------------
 
 
-                //---------------------------------------------------
-                //                 Edit Element
-                //---------------------------------------------------
                 // select editable element
                 $(dropArea).on("click", ".element-is-editable" , function (e){
-                    right_sidebar.children(".properties-area").html("");
+                    selected_element = $(this);
+                    right_sidebar.children("form").html("");
                     open_rightSidebar();
-                    // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
                     $(".btn-add-element").removeClass("element-selected text-primary");
                     $(".element-is-editable").removeClass("element-editing");
-                    $(this).addClass("element-editing");
+                    selected_element.addClass("element-editing");
 
-                    let elementType = $(this).data('element-type');
-                    let elementData = {};
-                    switch (elementType) {
-                        case 'callout':
-                            elementData = {
-                                id : {type: "id", value: $(this).attr("id")},
-                                direction : {type: "direction", value: $(this).parent().attr("dir")},
-                                css_class : {type: "elementCustomCss", value: $(this).data("css-class").split(/\s+/)},
-                                contentText : {type: "textarea", value: $(this).children("div").html()},
-                                borderColor : {type: "calloutBorderColor", value: $(this).data("border-color")},
-                                titleColor : {type: "textColor", value: $(this).children("h5").attr("class")},
-                                titleIcon : {type: "faIcon", value: $(this).children("h5").children("i").data("icon")},
-                                titleText : {type: "text", value: $(this).children("h5").children("span").html()},
-                            }
-                            break;
-                    }
-
-                    // append properties to right-sidebar
-                    for (let key in elementData) {
-                        let type = elementData[key].type;
-                        let props = elementData[key].value;
-                        right_sidebar.children(".properties-area").append(MAKE_PROPERTIES[type](props));
-                    }
-
+                    // append properties based on (element-type)
+                    right_sidebar.children("form").append(MAKE_PROPERTIES[selected_element.data('element-type')]());
+                    // append submitBtn
+                    right_sidebar.children("form").append($('<div class="row mt-5"><div class="col-12"><button class="form-control btn btn-success" type="submit">Update</button></div></div>'));
+                    // reinit listeners
                     $('.bootstrap-toggle').bootstrapToggle();
                     init_all_select2_elements();
                     init_all_ckeditor_elements();
-                    selected_element = $(this);
                 });
 
                 // unselect editable element
@@ -282,10 +245,9 @@
                 }
                 editableElement_unselect_listener();
                 //---------------------------------------------------
-                //---------------------------------------------------
 
                 function init_all_select2_elements () {
-                    $(".select2-taggable").select2({
+                    $(".select2-multiple").select2({
                         tags: true,
                         tokenSeparators: [',', ' ']
                     });
@@ -314,204 +276,60 @@
                     return Math.round(new Date().getTime() + (Math.random() * 100));
                 }
 
-
                 MAKE_PROPERTIES = {
-                    id : (value = undefined) => {
-                        let id = (value === undefined) ? {} : {value : value};
+                    callout : () => {
+                        let id = selected_element.attr("id") || "";
+                        let title = selected_element.children("h5").children("span").html() || "";
+                        let titleIcon = selected_element.children("h5").children("i").data("icon") || "";
 
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Id : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<input>")
-                                                .addClass("form-control")
-                                                .attr({type : "text"})
-                                                .attr(id)
-                                        )
-                                );
-                        return element;
+                        let titleColorOptions = '';
+                        ['text-primary', 'text-danger', 'text-warning'].forEach(function(css_class) {
+                            let selected = (css_class === selected_element.children("h5").attr("class")) ? 'selected="selected"' : '';
+                            titleColorOptions += `<option ${selected}>${css_class}</option>`;
+                        });
+
+                        let customCssOptions = "";
+                        selected_element.prop('className').split(' ').forEach(function(css_class) {
+                            customCssOptions += `<option selected="selected">${css_class}</option>`;
+                        });
+
+                        let content = selected_element.children("div").html() || "";
+
+                        let elementBorderOptions = '';
+                        ['callout-info', 'callout-danger', 'callout-warning'].forEach(function(css_class) {
+                            let selected = (css_class === selected_element.data("border-color")) ? 'selected="selected"' : '';
+                            elementBorderOptions += `<option ${selected}>${css_class}</option>`;
+                        });
+
+                        let dir = (selected_element.parent().attr("dir") === "rtl") ? "checked" : {};
+
+
+                        let properties_html =
+                            `<div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="id" type="text" value="${id}" autocomplete="off"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="titleText" class="form-control" type="text" value="${title}"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${titleIcon}"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="titleColor" class="select2-single">${titleColorOptions}</select></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple" multiple="multiple">${customCssOptions}</select></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${content}</textarea></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="borderColor" class="select2-single">${elementBorderOptions}</select></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Direction:</h6></div><div class="col-9"><input name="dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" checked="${dir}" data-on="RTL" data-off="LTR" data-onstyle="success" data-offstyle="danger"></div></div>
+                        `;
+
+                        return properties_html;
                     },
-                    direction : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Direction : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<input>")
-                                                .addClass("form-control bootstrap-toggle")
-                                                .attr({
-                                                    type : "checkbox",
-                                                    "data-toggle" : "toggle",
-                                                    checked : true,
-                                                    "data-on" : "RTL",
-                                                    "data-off" : "LTR",
-                                                    "data-onstyle" : "success",
-                                                    "data-offstyle" : "danger",
-                                                })
-                                        )
-                                );
-                        return element;
-                    },
-                    elementCustomCss : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Css Class : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<select></select>")
-                                                .addClass("select2-taggable")
-                                                .attr({
-                                                    multiple : "multiple",
-                                                })
-                                                .append(
-                                                    $('<option selected="selected">class1</option>')
-                                                )
-                                                .append(
-                                                    $('<option>class2</option>')
-                                                )
-                                                .append(
-                                                    $('<option selected="selected">class3</option>')
-                                                )
-                                        )
-                                );
-                        return element;
-                    },
-                    textarea : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Content Text : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<textarea></textarea>")
-                                                .addClass("ck-edit")
-                                                .attr({
-                                                    id : uniqueId(),
-                                                    rows : "10",
-                                                    cols : "80",
-                                                })
-                                                .html("This is my textarea to be replaced with CKEditor 4.")
-                                        )
-                                );
-                        return element;
-                    },
-                    calloutBorderColor : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Border Color : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<select></select>")
-                                                .addClass("select2-single")
-                                                .append(
-                                                    $('<option value="one">First</option>')
-                                                )
-                                                .append(
-                                                    $('<option value="two">Second</option>')
-                                                )
-                                                .append(
-                                                    $('<option value="three">Third</option>')
-                                                )
-                                        )
-                                );
-                        return element;
-                    },
-                    textColor : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Text Color : ")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<select></select>")
-                                                .addClass("select2-single")
-                                                .append(
-                                                    $('<option value="one">First</option>')
-                                                )
-                                                .append(
-                                                    $('<option value="two">Second</option>')
-                                                )
-                                                .append(
-                                                    $('<option value="three">Third</option>')
-                                                )
-                                        )
-                                );
-                        return element;
-                    },
-                    faIcon : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Title Icon :")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<input>")
-                                                .addClass("form-control")
-                                                .attr({type : "text", placeholder: "Example : fa-info"})
-                                        )
-                                );
-                        return element;
-                    },
-                    text : (value = undefined) => {
-                        let element =
-                            $("<div></div>").addClass("row mt-3")
-                                .append(
-                                    $("<div></div>").addClass("col-3 mt-2 text-left")
-                                        .append(
-                                            $("<h6></h6>").html("Title Text :")
-                                        )
-                                )
-                                .append(
-                                    $("<div></div>").addClass("col-9")
-                                        .append(
-                                            $("<input>")
-                                                .addClass("form-control")
-                                                .attr({type : "text"})
-                                        )
-                                );
-                        return element;
-                    },
-                }
+                };
+
+                right_sidebar.on('submit','#form_properties',function(e){
+                    e.preventDefault();
+                    let data = $('#form_properties').serializeArray();
+                    data.push({name: "cssClass", value: $("#form_properties .select2-multiple").select2("val")});
+                    let new_element = LDB_BUILDER.callout( {data} );
+
+                    // ye data ba dir OFF generate kardam, yeki ba dir ON
+                    // bayad dakhele BUILDER.callout property haro map konam....
+                    // map ke ok shod badesh selected_element.replace()...
+                    console.log(data);
+                });
 
             });
         </script>
