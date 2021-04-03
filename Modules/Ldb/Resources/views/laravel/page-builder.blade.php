@@ -8,7 +8,7 @@
     @slot('custom_css')
         <style>
             #dropArea {
-                min-height: 800px;
+                min-height: 600px;
                 border: 4px solid #d8dbde;
                 padding: 40px;
                 background-color: #f4f6f9;
