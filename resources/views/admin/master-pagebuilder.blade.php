@@ -129,6 +129,9 @@
             border-radius: 3rem !important;
             display: inline-block !important;
         }
+        #sidebar-right .btn-group .btn i {
+            line-height: unset !important;
+        }
         .select2-selection {
             text-align: left;
         }
@@ -160,7 +163,7 @@
             </div>
             <div class="btn-group mr-4" role="group">
                 <button type="button" class="btn btn-primary toolbar-duplicate" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Duplicate"><i class="far fa-clone"></i></button>
-                <button type="button" class="btn btn-primary toolbar-cut" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Cut"><i class="far fa-cut"></i></button>
+                <button type="button" class="btn btn-primary toolbar-cut" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Cut (future...)"><i class="far fa-cut"></i></button>
             </div>
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-danger toolbar-delete" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Delete"><i class="fas fa-trash-alt"></i></button>

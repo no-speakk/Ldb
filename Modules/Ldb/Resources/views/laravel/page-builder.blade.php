@@ -109,19 +109,20 @@
                         let titleColor = props.titleColor || "text-primary"; // danger, warning
                         let borderColor = props.borderColor || "callout-info";  // danger, warning
                         let content = props.content || "این یک متن است که توسط ckeditor ایجاد شده است";
-                        let cssClass = props.cssClass || "";
+                        let cssClass = props.cssClass ? props.cssClass.join(' ') : '';
                         let dir = (props.dir === "on") ? "ltr" : "rtl";
+                        console.log(cssClass);
 
                         let html;
                         if (is_child) {
-                            html = `<div id="${id}" class="callout element-is-editable ${borderColor}" data-element-type="callout" data-border-color="${borderColor}" ">
+                            html = `<div id="${id}" class="callout element-is-editable ${borderColor} ${cssClass}" data-element-type="callout" data-border-color="${borderColor}" ">
                                         <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
                                         <div>${content}</div>
                                     </div>`
                         } else {
                             html = `<section class="row">
                                         <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"}" dir="${dir}">
-                                            <div id="${id}" class="callout element-is-editable ${borderColor}" data-element-type="callout" data-border-color="${borderColor}" ">
+                                            <div id="${id}" class="callout element-is-editable ${borderColor} ${cssClass}" data-element-type="callout" data-border-color="${borderColor}" ">
                                                 <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
                                                 <div>${content}</div>
                                             </div>
@@ -290,7 +291,9 @@
                         });
 
                         let customCssOptions = "";
-                        selected_element.prop('className').split(' ').forEach(function(css_class) {
+                        selected_element.prop('className').split(' ')
+                            .filter( (i) => { return (i !== 'callout' && i !== 'element-is-editable' && i !== 'element-editing'  && i !== 'callout-info' && i !== 'callout-danger' && i !== 'callout-warning') } )
+                            .forEach(function(css_class) {
                             customCssOptions += `<option selected="selected">${css_class}</option>`;
                         });
 
@@ -321,14 +324,14 @@
 
                 right_sidebar.on('submit','#form_properties',function(e){
                     e.preventDefault();
-                    let rawData = $('#form_properties').serializeArray();
-                    let mappedData = {};
-                    for (let i=0; i < rawData.length; i++){
-                        mappedData[rawData[i].name] = rawData[i].value;
+                    let formData = $('#form_properties').serializeArray();
+                    let propertiesData = {};
+                    for (let i=0; i < formData.length; i++){
+                        propertiesData[formData[i].name] = formData[i].value;
                     }
-                    mappedData.cssClass = $("#form_properties .select2-multiple").select2("val");
+                    propertiesData.cssClass = $("#form_properties .select2-multiple").select2("val");
 
-                    let new_element = LDB_BUILDER.callout(mappedData);
+                    let new_element = LDB_BUILDER.callout(propertiesData);
                     selected_element.parent().parent().replaceWith(new_element);
                     editableElement_unselect_listener();
                     $('body').click();
@@ -339,6 +342,44 @@
                     selected_element.parent().parent().prev().remove(); // remove btn_addElement
                     selected_element.parent().parent().remove(); // remove element
                     $('body').click();
+                });
+
+                right_sidebar.on('click','.toolbar-moveup',function(e){
+                    let addBtnBalayeElement = selected_element.parent().parent().prev();
+                    let elementRow = selected_element.parent().parent();
+
+                    let isFirstElement = addBtnBalayeElement.prev().length;
+
+                    if (isFirstElement === 0) {
+                        return false;
+                    }
+                    $(addBtnBalayeElement).insertBefore(addBtnBalayeElement.prev().prev());
+                    $(elementRow).insertBefore(elementRow.prev().prev());
+                });
+
+                right_sidebar.on('click','.toolbar-movedown',function(e){
+                    let addBtnBalayeElement = selected_element.parent().parent().prev();
+                    let elementRow = selected_element.parent().parent();
+
+                    let isLastElement = elementRow.next("div.row").children(".btn-add-element").length;
+
+                    if (isLastElement === 0) {
+                        return false;
+                    }
+                    $(addBtnBalayeElement).insertAfter(addBtnBalayeElement.next().next().next());
+                    $(elementRow).insertAfter(elementRow.next().next().next());
+                });
+
+                right_sidebar.on('click','.toolbar-duplicate',function(e){
+                    let addBtnBalayeElement = selected_element.parent().parent().prev();
+                    let elementRow = selected_element.parent().parent();
+                    let newAddBtnBalayeElement = addBtnBalayeElement.clone();
+                    let newElementRow = elementRow.clone();
+
+                    $(newAddBtnBalayeElement).insertAfter(elementRow);
+                    $(newElementRow).insertAfter(elementRow.next());
+
+                    selected_element.click();
                 });
 
             });
