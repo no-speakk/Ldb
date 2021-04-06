@@ -122,6 +122,13 @@
         #sidebar-right div.toggle {
             width: 100% !important;
         }
+        #sidebar-right .btn-group {
+            display: inline-block;
+        }
+        #sidebar-right .btn-group .btn {
+            border-radius: 3rem !important;
+            display: inline-block !important;
+        }
         .select2-selection {
             text-align: left;
         }
@@ -144,6 +151,22 @@
 <div class="wrapper">
     <!-- Sidebar Right -->
     <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
+        <h6 class="text-center">Toolbar</h6>
+        <div class="sidebar-divider"></div>
+        <div id="edit_toolbar" class="btn-toolbar mb-5" role="toolbar">
+            <div class="btn-group mr-4" role="group">
+                <button type="button" class="btn btn-primary toolbar-moveup" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Up"><i class="fas fa-arrow-alt-up"></i></button>
+                <button type="button" class="btn btn-primary toolbar-movedown" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Down"><i class="fas fa-arrow-alt-down"></i></button>
+            </div>
+            <div class="btn-group mr-4" role="group">
+                <button type="button" class="btn btn-primary toolbar-duplicate" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Duplicate"><i class="far fa-clone"></i></button>
+                <button type="button" class="btn btn-primary toolbar-cut" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Cut"><i class="far fa-cut"></i></button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-danger toolbar-delete" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Delete"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+
         <h6 class="text-center">Properties</h6>
         <div class="sidebar-divider"></div>
         <form id="form_properties" action=""></form>

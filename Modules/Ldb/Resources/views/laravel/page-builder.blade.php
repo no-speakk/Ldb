@@ -8,7 +8,7 @@
     @slot('custom_css')
         <style>
             #dropArea {
-                min-height: 600px;
+                min-height: 800px;
                 border: 4px solid #d8dbde;
                 padding: 40px;
                 background-color: #f4f6f9;
@@ -109,8 +109,8 @@
                         let titleColor = props.titleColor || "text-primary"; // danger, warning
                         let borderColor = props.borderColor || "callout-info";  // danger, warning
                         let content = props.content || "این یک متن است که توسط ckeditor ایجاد شده است";
-                        let cssClass = props.css_class || "";
-                        let dir = props.dir || "rtl";
+                        let cssClass = props.cssClass || "";
+                        let dir = (props.dir === "on") ? "ltr" : "rtl";
 
                         let html;
                         if (is_child) {
@@ -122,7 +122,7 @@
                             html = `<section class="row">
                                         <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"}" dir="${dir}">
                                             <div id="${id}" class="callout element-is-editable ${borderColor}" data-element-type="callout" data-border-color="${borderColor}" ">
-                                                <h5 class="text-${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
+                                                <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
                                                 <div>${content}</div>
                                             </div>
                                         </div>
@@ -240,6 +240,7 @@
                         close_bothSidebars();
                         $(this).removeClass("element-editing");
                         // left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
+                        $("#form_properties").html();
                         selected_element = undefined;
                     }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
                 }
@@ -301,18 +302,17 @@
                             elementBorderOptions += `<option ${selected}>${css_class}</option>`;
                         });
 
-                        let dir = (selected_element.parent().attr("dir") === "rtl") ? "checked" : {};
-
+                        let dir = (selected_element.parent().attr("dir") === "ltr") ? "checked" : "";
 
                         let properties_html =
                             `<div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="id" type="text" value="${id}" autocomplete="off"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="titleText" class="form-control" type="text" value="${title}"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="title" class="form-control" type="text" value="${title}"></div></div>
                             <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${titleIcon}"></div></div>
                             <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="titleColor" class="select2-single">${titleColorOptions}</select></div></div>
                             <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple" multiple="multiple">${customCssOptions}</select></div></div>
                             <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${content}</textarea></div></div>
                             <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="borderColor" class="select2-single">${elementBorderOptions}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Direction:</h6></div><div class="col-9"><input name="dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" checked="${dir}" data-on="RTL" data-off="LTR" data-onstyle="success" data-offstyle="danger"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Dir:</h6></div><div class="col-9"><input name="dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" ${dir} data-on="LTR" data-off="RTL" data-onstyle="success" data-offstyle="danger"></div></div>
                         `;
 
                         return properties_html;
@@ -321,14 +321,24 @@
 
                 right_sidebar.on('submit','#form_properties',function(e){
                     e.preventDefault();
-                    let data = $('#form_properties').serializeArray();
-                    data.push({name: "cssClass", value: $("#form_properties .select2-multiple").select2("val")});
-                    let new_element = LDB_BUILDER.callout( {data} );
+                    let rawData = $('#form_properties').serializeArray();
+                    let mappedData = {};
+                    for (let i=0; i < rawData.length; i++){
+                        mappedData[rawData[i].name] = rawData[i].value;
+                    }
+                    mappedData.cssClass = $("#form_properties .select2-multiple").select2("val");
 
-                    // ye data ba dir OFF generate kardam, yeki ba dir ON
-                    // bayad dakhele BUILDER.callout property haro map konam....
-                    // map ke ok shod badesh selected_element.replace()...
-                    console.log(data);
+                    let new_element = LDB_BUILDER.callout(mappedData);
+                    selected_element.parent().parent().replaceWith(new_element);
+                    editableElement_unselect_listener();
+                    $('body').click();
+                });
+
+
+                right_sidebar.on('click','.toolbar-delete',function(e){
+                    selected_element.parent().parent().prev().remove(); // remove btn_addElement
+                    selected_element.parent().parent().remove(); // remove element
+                    $('body').click();
                 });
 
             });
