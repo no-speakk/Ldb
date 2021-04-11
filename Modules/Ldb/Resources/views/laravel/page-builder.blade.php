@@ -242,6 +242,7 @@
                 }
                 editableElement_unselect_listener();
 
+                // init_all_select2_elements
                 function init_all_select2_elements () {
                     $(".select2-multiple").select2({
                         tags: true,
