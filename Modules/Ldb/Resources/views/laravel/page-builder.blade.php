@@ -56,6 +56,9 @@
             #dropArea .element-editing {
                 outline: 5px solid orange !important;
             }
+            #dropArea .element-editing-dashed {
+                outline: 5px dashed #ffa50061 !important;
+            }
         </style>
     @endslot
 
@@ -101,34 +104,29 @@
                         return html;
                     },
                     callout : (props = {}) => {
-                        let is_child = props.is_child || false;
+                        let el_id = props.el_id || "";
+                        let el_title = props.el_title || "عنوان";
+                        let el_titleIcon = props.el_titleIcon || "fa fa-info";
+                        let el_titleColor = props.el_titleColor || "text-primary"; // danger, warning
+                        let el_borderColor = props.el_borderColor || "callout-info";  // danger, warning
+                        let el_content = props.el_content || "این یک متن است که توسط ckeditor ایجاد شده است";
+                        let el_css = props.el_css ? props.el_css.join(' ') : '';
 
-                        let id = props.id || "";
-                        let title = props.title || "عنوان";
-                        let titleIcon = props.titleIcon || "fa fa-info";
-                        let titleColor = props.titleColor || "text-primary"; // danger, warning
-                        let borderColor = props.borderColor || "callout-info";  // danger, warning
-                        let content = props.content || "این یک متن است که توسط ckeditor ایجاد شده است";
-                        let cssClass = props.cssClass ? props.cssClass.join(' ') : '';
-                        let dir = (props.dir === "on") ? "ltr" : "rtl";
-                        console.log(cssClass);
+                        let col_dir = (props.col_dir === "on") ? "ltr" : "rtl";
+                        let col_css = props.col_css ? props.col_css.join(' ') : 'col-12';
+
+                        let row_css = props.row_css ? props.row_css.join(' ') : '';
 
                         let html;
-                        if (is_child) {
-                            html = `<div id="${id}" class="callout element-is-editable ${borderColor} ${cssClass}" data-element-type="callout" data-border-color="${borderColor}" ">
-                                        <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
-                                        <div>${content}</div>
-                                    </div>`
-                        } else {
-                            html = `<section class="row">
-                                        <div class="col-12 ${dir === "ltr" ? "text-left" : "text-right"}" dir="${dir}">
-                                            <div id="${id}" class="callout element-is-editable ${borderColor} ${cssClass}" data-element-type="callout" data-border-color="${borderColor}" ">
-                                                <h5 class="${titleColor}"><i class="icon ml-2 ${titleIcon} ${dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${titleIcon}"></i> <span>${title}</span></h5>
-                                                <div>${content}</div>
-                                            </div>
+                        html = `<section class="row ${row_css}">
+                                    <div class="${col_css} ${col_dir === "ltr" ? "text-left" : "text-right"}" dir="${col_dir}">
+                                        <div id="${el_id}" class="callout element-is-editable ${el_borderColor} ${el_css}" data-element-type="callout" data-border-color="${el_borderColor}" ">
+                                            <h5 class="${el_titleColor}"><i class="icon ml-2 ${el_titleIcon} ${col_dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${el_titleIcon}"></i> <span>${el_title}</span></h5>
+                                            <div>${el_content}</div>
                                         </div>
-                                    </section>`
-                        }
+                                    </div>
+                                </section>`
+
                         return html;
                     },
                     row : (props = {}) => {
@@ -152,19 +150,15 @@
                 let selected_element;
 
                 // vaghti hichi to safhe nabud, btn-add-element generate kon
-                if (dropArea.children().length <= 1) {
-                    dropArea.html(LDB_BUILDER.show_btn_addElement());
-                }
+                dropArea.html(LDB_BUILDER.show_btn_addElement());
 
-                //---------------------------------------------------
-                //                 Add Element +
-                //---------------------------------------------------
                 // select Add Element +
                 $(dropArea).on("click", ".btn-add-element" , function (e){
                     open_leftSidebar();
                     // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
                     $(".btn-add-element").removeClass("element-selected text-primary");
-                    $(".element-is-editable").removeClass("element-editing");
+                    $(".element-editing").removeClass("element-editing");
+                    $(".element-editing-dashed").removeClass("element-editing-dashed");
                     $(this).addClass("element-selected text-primary");
 
                     if ($(this).parent().hasClass("empty-row")) {
@@ -191,9 +185,9 @@
                     let parentRow = selected_element.parent();
                     if (parentRow.hasClass("empty-row")) {
                         let col_width = 'col-' + (12 / parentRow.children().length);
-                        let newElement_mockup = LDB_BUILDER[$(this).data('preview-element-type')]({text : "this is created from child"});
+                        let newElement_mockup = LDB_BUILDER[$(this).data('preview-element-type')]();
                         let removedParent_from_newElement = newElement_mockup
-                            .replace('<section class="row">', '')
+                            .replace('<section class="row ">', '')
                             .replace('</section>', '')
                             .replace('col-12', col_width);
                         selected_element.replaceWith(removedParent_from_newElement);
@@ -209,8 +203,6 @@
                     // attach fucking listener to new elements
                     emptyRow_unselect_listener();
                     editableElement_unselect_listener();
-                    // select new element
-                    selected_element = parentRow.prev();
                     // remove selection
                     $('body').click();
                 });
@@ -222,12 +214,15 @@
                     right_sidebar.children("form").html("");
                     open_rightSidebar();
                     $(".btn-add-element").removeClass("element-selected text-primary");
-                    $(".element-is-editable").removeClass("element-editing");
+                    $(".element-editing").removeClass("element-editing");
+                    $(".element-editing-dashed").removeClass("element-editing-dashed");
                     selected_element.addClass("element-editing");
+                    selected_element.parent().addClass("element-editing-dashed");
+                    selected_element.parent().parent().addClass("element-editing-dashed");
 
                     // append properties based on (element-type)
                     right_sidebar.children("form").append(MAKE_PROPERTIES[selected_element.data('element-type')]());
-                    // append submitBtn
+                    // append updateBtn
                     right_sidebar.children("form").append($('<div class="row mt-5"><div class="col-12"><button class="form-control btn btn-success" type="submit">Update</button></div></div>'));
                     // reinit listeners
                     $('.bootstrap-toggle').bootstrapToggle();
@@ -239,14 +234,13 @@
                 function editableElement_unselect_listener (){
                     $('.element-is-editable').outsideClick(function(event){
                         close_bothSidebars();
-                        $(this).removeClass("element-editing");
-                        // left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
+                        $(".element-editing").removeClass("element-editing");
+                        $(".element-editing-dashed").removeClass("element-editing-dashed");
                         $("#form_properties").html();
                         selected_element = undefined;
                     }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
                 }
                 editableElement_unselect_listener();
-                //---------------------------------------------------
 
                 function init_all_select2_elements () {
                     $(".select2-multiple").select2({
@@ -257,7 +251,7 @@
                 }
                 init_all_select2_elements();
 
-
+                // sidebars open/close
                 function open_rightSidebar() {
                     right_sidebar.css("right", "0");
                     left_sidebar.css("left", "-560px");
@@ -278,50 +272,64 @@
                     return Math.round(new Date().getTime() + (Math.random() * 100));
                 }
 
+                // MAKE_PROPERTIES
                 MAKE_PROPERTIES = {
                     callout : () => {
-                        let id = selected_element.attr("id") || "";
-                        let title = selected_element.children("h5").children("span").html() || "";
-                        let titleIcon = selected_element.children("h5").children("i").data("icon") || "";
-
-                        let titleColorOptions = '';
+                        let el_id = selected_element.attr("id") || "";
+                        let el_title = selected_element.children("h5").children("span").html() || "";
+                        let el_titleIcon = selected_element.children("h5").children("i").data("icon") || "";
+                        let el_titleColor = '';
                         ['text-primary', 'text-danger', 'text-warning'].forEach(function(css_class) {
-                            let selected = (css_class === selected_element.children("h5").attr("class")) ? 'selected="selected"' : '';
-                            titleColorOptions += `<option ${selected}>${css_class}</option>`;
+                            let el_selected = (css_class === selected_element.children("h5").attr("class")) ? 'selected="selected"' : '';
+                            el_titleColor += `<option ${el_selected}>${css_class}</option>`;
                         });
-
-                        let customCssOptions = "";
+                        let el_css = "";
                         selected_element.prop('className').split(' ')
                             .filter( (i) => { return (i !== 'callout' && i !== 'element-is-editable' && i !== 'element-editing'  && i !== 'callout-info' && i !== 'callout-danger' && i !== 'callout-warning') } )
                             .forEach(function(css_class) {
-                            customCssOptions += `<option selected="selected">${css_class}</option>`;
+                                el_css += `<option selected="selected">${css_class}</option>`;
                         });
-
-                        let content = selected_element.children("div").html() || "";
-
-                        let elementBorderOptions = '';
+                        let el_content = selected_element.children("div").html() || "";
+                        let el_borderColor = '';
                         ['callout-info', 'callout-danger', 'callout-warning'].forEach(function(css_class) {
                             let selected = (css_class === selected_element.data("border-color")) ? 'selected="selected"' : '';
-                            elementBorderOptions += `<option ${selected}>${css_class}</option>`;
+                            el_borderColor += `<option ${selected}>${css_class}</option>`;
                         });
-
-                        let dir = (selected_element.parent().attr("dir") === "ltr") ? "checked" : "";
+                        let col_dir = (selected_element.parent().attr("dir") === "ltr") ? "checked" : "";
+                        let col_css = "";
+                        selected_element.parent().prop('className').split(' ')
+                            .filter( (i) => { return (i !== 'text-left' && i !== 'text-right' && i !== 'element-editing-dashed') } )
+                            .forEach(function(css_class) {
+                                col_css += `<option selected="selected">${css_class}</option>`;
+                            });
+                        let row_css = "";
+                        selected_element.parent().parent().prop('className').split(' ')
+                            .filter( (i) => { return (i !== 'row' && i !== 'element-editing-dashed') } )
+                            .forEach(function(css_class) {
+                                row_css += `<option selected="selected">${css_class}</option>`;
+                            });
 
                         let properties_html =
-                            `<div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="id" type="text" value="${id}" autocomplete="off"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="title" class="form-control" type="text" value="${title}"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${titleIcon}"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="titleColor" class="select2-single">${titleColorOptions}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple" multiple="multiple">${customCssOptions}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${content}</textarea></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="borderColor" class="select2-single">${elementBorderOptions}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Dir:</h6></div><div class="col-9"><input name="dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" ${dir} data-on="LTR" data-off="RTL" data-onstyle="success" data-offstyle="danger"></div></div>
+                            `<h5 class="text-center">Element properties</h5><div class="sidebar-divider"></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="el_id" type="text" value="${el_id}" autocomplete="off"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="el_title" class="form-control" type="text" value="${el_title}"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="el_titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${el_titleIcon}"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="el_titleColor" class="select2-single">${el_titleColor}</select></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple el_css" multiple="multiple">${el_css}</select></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="el_content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${el_content}</textarea></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="el_borderColor" class="select2-single">${el_borderColor}</select></div></div>
+                            <h5 class="text-center mt-5">Column properties</h5><div class="sidebar-divider"></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Dir:</h6></div><div class="col-9"><input name="col_dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" ${col_dir} data-on="LTR" data-off="RTL" data-onstyle="success" data-offstyle="light"></div></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple col_css" multiple="multiple">${col_css}</select></div></div>
+                            <h5 class="text-center mt-5">Row properties</h5><div class="sidebar-divider"></div>
+                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple row_css" multiple="multiple">${row_css}</select></div></div>
                         `;
 
                         return properties_html;
                     },
                 };
 
+                // Update Properties
                 right_sidebar.on('submit','#form_properties',function(e){
                     e.preventDefault();
                     let formData = $('#form_properties').serializeArray();
@@ -329,7 +337,9 @@
                     for (let i=0; i < formData.length; i++){
                         propertiesData[formData[i].name] = formData[i].value;
                     }
-                    propertiesData.cssClass = $("#form_properties .select2-multiple").select2("val");
+                    propertiesData.el_css = $("#form_properties .el_css").select2("val");
+                    propertiesData.col_css = $("#form_properties .col_css").select2("val");
+                    propertiesData.row_css = $("#form_properties .row_css").select2("val");
 
                     let new_element = LDB_BUILDER.callout(propertiesData);
                     selected_element.parent().parent().replaceWith(new_element);
@@ -337,13 +347,13 @@
                     $('body').click();
                 });
 
-
+                // Toolbar - delete
                 right_sidebar.on('click','.toolbar-delete',function(e){
                     selected_element.parent().parent().prev().remove(); // remove btn_addElement
                     selected_element.parent().parent().remove(); // remove element
                     $('body').click();
                 });
-
+                // Toolbar - moveup
                 right_sidebar.on('click','.toolbar-moveup',function(e){
                     let addBtnBalayeElement = selected_element.parent().parent().prev();
                     let elementRow = selected_element.parent().parent();
@@ -356,7 +366,7 @@
                     $(addBtnBalayeElement).insertBefore(addBtnBalayeElement.prev().prev());
                     $(elementRow).insertBefore(elementRow.prev().prev());
                 });
-
+                // Toolbar - movedown
                 right_sidebar.on('click','.toolbar-movedown',function(e){
                     let addBtnBalayeElement = selected_element.parent().parent().prev();
                     let elementRow = selected_element.parent().parent();
@@ -369,7 +379,7 @@
                     $(addBtnBalayeElement).insertAfter(addBtnBalayeElement.next().next().next());
                     $(elementRow).insertAfter(elementRow.next().next().next());
                 });
-
+                // Toolbar - duplicate
                 right_sidebar.on('click','.toolbar-duplicate',function(e){
                     let addBtnBalayeElement = selected_element.parent().parent().prev();
                     let elementRow = selected_element.parent().parent();

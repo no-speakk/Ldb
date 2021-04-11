@@ -132,6 +132,9 @@
         #sidebar-right .btn-group .btn i {
             line-height: unset !important;
         }
+        #sidebar-right .toggle-handle {
+            background-color: #bec0cb;
+        }
         .select2-selection {
             text-align: left;
         }
@@ -154,7 +157,7 @@
 <div class="wrapper">
     <!-- Sidebar Right -->
     <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
-        <h6 class="text-center">Toolbar</h6>
+        <h5 class="text-center">Toolbar</h5>
         <div class="sidebar-divider"></div>
         <div id="edit_toolbar" class="btn-toolbar mb-5" role="toolbar">
             <div class="btn-group mr-4" role="group">
@@ -170,8 +173,6 @@
             </div>
         </div>
 
-        <h6 class="text-center">Properties</h6>
-        <div class="sidebar-divider"></div>
         <form id="form_properties" action=""></form>
     </aside>
 
