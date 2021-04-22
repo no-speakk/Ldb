@@ -342,8 +342,7 @@
                     propertiesData.col_css = $("#form_properties .col_css").select2("val");
                     propertiesData.row_css = $("#form_properties .row_css").select2("val");
 
-                    let new_element = LDB_BUILDER.callout(propertiesData);
-                    selected_element.parent().parent().replaceWith(new_element);
+                    selected_element.parent().parent().replaceWith( LDB_BUILDER.callout(propertiesData) );
                     editableElement_unselect_listener();
                     $('body').click();
                 });
