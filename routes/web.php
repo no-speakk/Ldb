@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LaravelController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'admin.index')->name('admin.index');
+Route::view('/', 'dashboard')->name('dashboard');
+
+Route::view('laravel/newproject',   'laravel.newproject')->name('laravel.newproject');
+Route::view('laravel/front',        'laravel.front')->name('laravel.front');
+Route::view('laravel/pagebuilder',  'laravel.pagebuilder')->name('laravel.pagebuilder');
+

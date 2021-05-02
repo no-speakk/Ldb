@@ -1,5 +1,5 @@
-@component('admin.master')
-    @slot('title') به Ldb خوش آمدید @endslot
+@component('master')
+    @slot('title') به داشبورد خوش آمدید @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ '#' }}">داشبورد</a></li>
 {{--        <li class="breadcrumb-item active">زیرمنو۱</li>--}}

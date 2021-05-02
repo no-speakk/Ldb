@@ -1,4 +1,4 @@
-@component('admin.master')
+@component('master')
     @slot('title') پروژه جدید @endslot
     @slot('breadcrumb')
         <li class="breadcrumb-item"><a href="{{ '#' }}">داشبورد</a></li>
