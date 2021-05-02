@@ -204,495 +204,489 @@
 </head>
 <body class="hold-transition sidebar-mini">
 
-
-
-<div class="wrapper">
-    <!-- Sidebar Right -->
-    <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
-        <h5 class="text-center">Toolbar</h5>
-        <div class="sidebar-divider"></div>
-        <div id="edit_toolbar" class="btn-toolbar mb-5" role="toolbar">
-            <div class="btn-group mr-4" role="group">
-                <button type="button" class="btn btn-primary toolbar-moveup" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Up"><i class="fas fa-arrow-alt-up"></i></button>
-                <button type="button" class="btn btn-primary toolbar-movedown" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Down"><i class="fas fa-arrow-alt-down"></i></button>
-            </div>
-            <div class="btn-group mr-4" role="group">
-                <button type="button" class="btn btn-primary toolbar-duplicate" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Duplicate"><i class="far fa-clone"></i></button>
-                <button type="button" class="btn btn-primary toolbar-cut" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Cut (future...)"><i class="far fa-cut"></i></button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-danger toolbar-delete" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Delete"><i class="fas fa-trash-alt"></i></button>
-            </div>
-        </div>
-
-        <form id="form_properties" action=""></form>
-    </aside>
-
-    <!-- Sidebar Left -->
-    <aside id="sidebar-left" class="main-sidebar sidebar-dark-primary elevation-4">
-        <h6 class="text-center">Select Something</h6>
-        <div class="sidebar-divider"></div>
-    </aside>
-
-    <div class="content-wrapper">
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12" id="page">
-                        <section class="row">
-                            <div class="col-12 text-left ltr" id="div_output"></div>
-                        </section>
-                    </div>
+    <div class="wrapper">
+        <!-- Sidebar Right -->
+        <aside id="sidebar-right" class="main-sidebar sidebar-dark-primary elevation-4">
+            <h5 class="text-center">Toolbar</h5>
+            <div class="sidebar-divider"></div>
+            <div id="edit_toolbar" class="btn-toolbar mb-5" role="toolbar">
+                <div class="btn-group mr-4" role="group">
+                    <button type="button" class="btn btn-primary toolbar-moveup" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Up"><i class="fas fa-arrow-alt-up"></i></button>
+                    <button type="button" class="btn btn-primary toolbar-movedown" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Move Down"><i class="fas fa-arrow-alt-down"></i></button>
+                </div>
+                <div class="btn-group mr-4" role="group">
+                    <button type="button" class="btn btn-primary toolbar-duplicate" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Duplicate"><i class="far fa-clone"></i></button>
+                    <button type="button" class="btn btn-primary toolbar-cut" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Cut (future...)"><i class="far fa-cut"></i></button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-danger toolbar-delete" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Delete"><i class="fas fa-trash-alt"></i></button>
                 </div>
             </div>
-        </section>
+
+            <form id="form_properties" action=""></form>
+        </aside>
+        <!-- Sidebar Left -->
+        <aside id="sidebar-left" class="main-sidebar sidebar-dark-primary elevation-4">
+            <h6 class="text-center">Select Something</h6>
+            <div class="sidebar-divider"></div>
+        </aside>
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12" id="page">
+                            <section class="row">
+                                <div class="col-12 text-left ltr" id="div_output"></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <!-- /.content -->
     </div>
-</div>
 
 
 
-<!-- jQuery -->
-<script src="/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI -->
-<script src="/plugins/jQueryUI/jquery-ui.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/plugins/sparkline/jquery.sparkline.min.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="/plugins/knob/jquery.knob.js"></script>
-<!-- daterangepicker -->
-<script src="/plugins/momentjs/moment.min.js"></script>
-<script src="/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
-<script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="/plugins/fastclick/fastclick.js"></script>
-<!-- Select2 -->
-<script src="/plugins/select2/select2.full.min.js"></script>
-<!-- Jquery Mask Plugin -->
-<script src="/plugins/jquery-mask/jquery.mask.min.js"></script>
-<!-- Prism -->
-<script src="/plugins/prism/prism.js"></script>
-<!-- Bootstrap Toggle -->
-<script src="/plugins/bootstrap-toggle/bootstrap4-toggle.min.js"></script>
-<!-- lightgallery -->
-<script src="/plugins/lightgallery/lightgallery.min.js"></script>
-<script src="/plugins/lightgallery/lg-thumbnail.min.js"></script>
-<script src="/plugins/lightgallery/lg-autoplay.min.js"></script>
-<script src="/plugins/lightgallery/lg-fullscreen.min.js"></script>
-<script src="/plugins/lightgallery/lg-rotate.min.js"></script>
-<script src="/plugins/lightgallery/lg-share.min.js"></script>
-<script src="/plugins/lightgallery/lg-video.min.js"></script>
-<script src="/plugins/lightgallery/lg-zoom.min.js"></script>
-<script>
-    lightGallery(document.getElementById('lightgallery'), {
-        selector: 'a'
-    });
-</script>
-<!-- ckeditor -->
-<script src="/plugins/ckeditor4/ckeditor.js"></script>
-<script>
-    function init_all_ckeditor_elements () {
-        $.each($('.ck-edit'), function( index, value ) {
-            CKEDITOR.replace(this.id);
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="/plugins/jQueryUI/jquery-ui.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="/plugins/momentjs/moment.min.js"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/plugins/fastclick/fastclick.js"></script>
+    <!-- Select2 -->
+    <script src="/plugins/select2/select2.full.min.js"></script>
+    <!-- Jquery Mask Plugin -->
+    <script src="/plugins/jquery-mask/jquery.mask.min.js"></script>
+    <!-- Prism -->
+    <script src="/plugins/prism/prism.js"></script>
+    <!-- Bootstrap Toggle -->
+    <script src="/plugins/bootstrap-toggle/bootstrap4-toggle.min.js"></script>
+    <!-- lightgallery -->
+    <script src="/plugins/lightgallery/lightgallery.min.js"></script>
+    <script src="/plugins/lightgallery/lg-thumbnail.min.js"></script>
+    <script src="/plugins/lightgallery/lg-autoplay.min.js"></script>
+    <script src="/plugins/lightgallery/lg-fullscreen.min.js"></script>
+    <script src="/plugins/lightgallery/lg-rotate.min.js"></script>
+    <script src="/plugins/lightgallery/lg-share.min.js"></script>
+    <script src="/plugins/lightgallery/lg-video.min.js"></script>
+    <script src="/plugins/lightgallery/lg-zoom.min.js"></script>
+    <script>
+        lightGallery(document.getElementById('lightgallery'), {
+            selector: 'a'
         });
-    }
-    init_all_ckeditor_elements();
-</script>
-<!-- ldb -->
-<script src="/plugins/ldb/visual-html-editor.js?random=@php echo filemtime(public_path('/plugins/ldb/visual-html-editor.js')); @endphp"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('js/admin.js') }}"></script>
+    </script>
+    <!-- ckeditor -->
+    <script src="/plugins/ckeditor4/ckeditor.js"></script>
+    <script>
+        function init_all_ckeditor_elements () {
+            $.each($('.ck-edit'), function( index, value ) {
+                CKEDITOR.replace(this.id);
+            });
+        }
+        init_all_ckeditor_elements();
+    </script>
+    <!-- ldb -->
+    <script src="/plugins/ldb/visual-html-editor.js?random=@php echo filemtime(public_path('/plugins/ldb/visual-html-editor.js')); @endphp"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('js/admin.js') }}"></script>
 
 
 
 
 
-<script>
-    $(function(){
-        LDB_BUILDER = {
-            show_btn_addElement : (props = {}) => {
-                let is_invis = props.invis || false;
+    <script>
+        $(function(){
+            LDB_BUILDER = {
+                show_btn_addElement : (props = {}) => {
+                    let is_invis = props.invis || false;
 
-                if (is_invis) {
-                    return `<div class="row mt-2 mb-2">
-                                    <div class="col-12 invis btn-add-element text-center"><h6>Add Element +</h6></div>
-                                </div>`;
-                }
-
-                return `<div class="row">
-                                    <div class="col-12 btn-add-element text-center element-unselected mt-4"><h5>Add Element +</h5></div>
-                                </div>`;
-            },
-            show_leftSidebar_elements : (elements = []) => {
-                let asset_path = @json(asset('img/ldb/laragon2.png'));
-                let html = `<h6 class="text-center">Add New Element</h6><div class="sidebar-divider"></div><div class="row">`;
-                elements.forEach(function(element) {
-                    html += `<div class="col-4 preview-element" data-preview-element-type="${element}">
-                                        <div class="row text-center">
-                                            <div class="col-12">
-                                                <img class="mt-2 mb-2 img-thumbnail" style="width: 120px;height: 120px;" src="${asset_path}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="row text-center">
-                                            <div class="col-12">
-                                                <h6>${element}</h6>
-                                            </div>
-                                        </div>
+                    if (is_invis) {
+                        return `<div class="row mt-2 mb-2">
+                                        <div class="col-12 invis btn-add-element text-center"><h6>Add Element +</h6></div>
                                     </div>`;
-                });
-                html += `</div>`;
-                return html;
-            },
-            callout : (props = {}) => {
-                let el_id = props.el_id || "";
-                let el_title = props.el_title || "عنوان";
-                let el_titleIcon = props.el_titleIcon || "fa fa-info";
-                let el_titleColor = props.el_titleColor || "text-primary"; // danger, warning
-                let el_borderColor = props.el_borderColor || "callout-info";  // danger, warning
-                let el_content = props.el_content || "این یک متن است که توسط ckeditor ایجاد شده است";
-                let el_css = props.el_css ? props.el_css.join(' ') : '';
+                    }
 
-                let col_dir = (props.col_dir === "on") ? "ltr" : "rtl";
-                let col_css = props.col_css ? props.col_css.join(' ') : 'col-12';
+                    return `<div class="row">
+                                        <div class="col-12 btn-add-element text-center element-unselected mt-4"><h5>Add Element +</h5></div>
+                                    </div>`;
+                },
+                show_leftSidebar_elements : (elements = []) => {
+                    let asset_path = @json(asset('img/ldb/laragon2.png'));
+                    let html = `<h6 class="text-center">Add New Element</h6><div class="sidebar-divider"></div><div class="row">`;
+                    elements.forEach(function(element) {
+                        html += `<div class="col-4 preview-element" data-preview-element-type="${element}">
+                                            <div class="row text-center">
+                                                <div class="col-12">
+                                                    <img class="mt-2 mb-2 img-thumbnail" style="width: 120px;height: 120px;" src="${asset_path}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="row text-center">
+                                                <div class="col-12">
+                                                    <h6>${element}</h6>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                    });
+                    html += `</div>`;
+                    return html;
+                },
+                callout : (props = {}) => {
+                    let el_id = props.el_id || "";
+                    let el_title = props.el_title || "عنوان";
+                    let el_titleIcon = props.el_titleIcon || "fa fa-info";
+                    let el_titleColor = props.el_titleColor || "text-primary"; // danger, warning
+                    let el_borderColor = props.el_borderColor || "callout-info";  // danger, warning
+                    let el_content = props.el_content || "این یک متن است که توسط ckeditor ایجاد شده است";
+                    let el_css = props.el_css ? props.el_css.join(' ') : '';
 
-                let row_css = props.row_css ? props.row_css.join(' ') : '';
+                    let col_dir = (props.col_dir === "on") ? "ltr" : "rtl";
+                    let col_css = props.col_css ? props.col_css.join(' ') : 'col-12';
 
-                let html;
-                html = `<section class="row ${row_css}">
-                                    <div class="${col_css} ${col_dir === "ltr" ? "text-left" : "text-right"}" dir="${col_dir}">
-                                        <div id="${el_id}" class="callout element-is-editable ${el_borderColor} ${el_css}" data-element-type="callout" data-border-color="${el_borderColor}" ">
-                                            <h5 class="${el_titleColor}"><i class="icon ml-2 ${el_titleIcon} ${col_dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${el_titleIcon}"></i> <span>${el_title}</span></h5>
-                                            <div>${el_content}</div>
+                    let row_css = props.row_css ? props.row_css.join(' ') : '';
+
+                    let html;
+                    html = `<section class="row ${row_css}">
+                                        <div class="${col_css} ${col_dir === "ltr" ? "text-left" : "text-right"}" dir="${col_dir}">
+                                            <div id="${el_id}" class="callout element-is-editable ${el_borderColor} ${el_css}" data-element-type="callout" data-border-color="${el_borderColor}" ">
+                                                <h5 class="${el_titleColor}"><i class="icon ml-2 ${el_titleIcon} ${col_dir === "ltr" ? "pull-left" : "pull-right"}" data-icon="${el_titleIcon}"></i> <span>${el_title}</span></h5>
+                                                <div>${el_content}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>`
+                                    </section>`
 
-                return html;
-            },
-            row : (props = {}) => {
-                // let css_class = props.css_class || "";
-                // let dir = props.dir || "rtl";
+                    return html;
+                },
+                row : (props = {}) => {
+                    // let css_class = props.css_class || "";
+                    // let dir = props.dir || "rtl";
 
-                return `<section class="row empty-row" data-preview-element-type="empty-row">
-                                    <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
-                                    <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
-                                </section>`;
-            },
-        }
-    });
-</script>
-
-<script>
-    $(function (){
-        let div_output = $("#div_output");
-        let left_sidebar = $("#sidebar-left");
-        let right_sidebar = $("#sidebar-right");
-        let selected_element;
-
-        // vaghti hichi to safhe nabud, btn-add-element generate kon
-        div_output.html(LDB_BUILDER.show_btn_addElement());
-
-        // select Add Element +
-        $(div_output).on("click", ".btn-add-element" , function (e){
-            open_leftSidebar();
-            // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
-            $(".btn-add-element").removeClass("element-selected text-primary");
-            $(".element-editing").removeClass("element-editing");
-            $(".element-editing-dashed").removeClass("element-editing-dashed");
-            $(this).addClass("element-selected text-primary");
-
-            if ($(this).parent().hasClass("empty-row")) {
-                left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['callout']));
-            } else {
-                left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['row', 'callout']));
+                    return `<section class="row empty-row" data-preview-element-type="empty-row">
+                                        <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
+                                        <div class="col-6 btn-add-element text-center element-unselected"><h5>Add Element +</h5></div>
+                                    </section>`;
+                },
             }
-            selected_element = $(this);
         });
+    </script>
+    <script>
+        $(function (){
+            let div_output = $("#div_output");
+            let left_sidebar = $("#sidebar-left");
+            let right_sidebar = $("#sidebar-right");
+            let selected_element;
 
-        // unselect Add Element +
-        function emptyRow_unselect_listener (){
-            $('.btn-add-element').outsideClick(function(event){
-                close_bothSidebars();
-                $(this).removeClass("element-selected text-primary");
-                left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
-                selected_element = undefined;
-            }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
-        }
-        emptyRow_unselect_listener();
+            // vaghti hichi to safhe nabud, btn-add-element generate kon
+            div_output.html(LDB_BUILDER.show_btn_addElement());
 
-        // create element from left-sidebar
-        left_sidebar.on("click", ".preview-element" , function (e){
-            let parentRow = selected_element.parent();
-            if (parentRow.hasClass("empty-row")) {
-                let col_width = 'col-' + (12 / parentRow.children().length);
-                let newElement_mockup = LDB_BUILDER[$(this).data('preview-element-type')]();
-                let removedParent_from_newElement = newElement_mockup
-                    .replace('<section class="row ">', '')
-                    .replace('</section>', '')
-                    .replace('col-12', col_width);
-                selected_element.replaceWith(removedParent_from_newElement);
-                // remove attr and style from parentRow after all cols filled
-                if (parentRow.children('.btn-add-element').length === 0) {
-                    parentRow.removeClass("empty-row");
-                    parentRow.removeAttr("data-preview-element-type");
-                }
-            } else {
-                parentRow.before(LDB_BUILDER[$(this).data('preview-element-type')]());
-                parentRow.prev().before(LDB_BUILDER.show_btn_addElement({invis : true}));
-            }
-            // attach fucking listener to new elements
-            emptyRow_unselect_listener();
-            editableElement_unselect_listener();
-            // remove selection
-            $('body').click();
-        });
-
-
-        // select editable element
-        $(div_output).on("click", ".element-is-editable" , function (e){
-            selected_element = $(this);
-            right_sidebar.children("form").html("");
-            open_rightSidebar();
-            $(".btn-add-element").removeClass("element-selected text-primary");
-            $(".element-editing").removeClass("element-editing");
-            $(".element-editing-dashed").removeClass("element-editing-dashed");
-            selected_element.addClass("element-editing");
-            selected_element.parent().addClass("element-editing-dashed");
-            selected_element.parent().parent().addClass("element-editing-dashed");
-
-            // append properties based on (element-type)
-            right_sidebar.children("form").append(MAKE_PROPERTIES[selected_element.data('element-type')]());
-            // append updateBtn
-            right_sidebar.children("form").append($('<div class="row mt-5"><div class="col-12"><button class="form-control btn btn-success" type="submit">Update</button></div></div>'));
-            // reinit listeners
-            $('.bootstrap-toggle').bootstrapToggle();
-            init_all_select2_elements();
-            init_all_ckeditor_elements();
-        });
-
-        // unselect editable element
-        function editableElement_unselect_listener (){
-            $('.element-is-editable').outsideClick(function(event){
-                close_bothSidebars();
+            // select Add Element +
+            $(div_output).on("click", ".btn-add-element" , function (e){
+                open_leftSidebar();
+                // vaghti az ye selected, ye selectede dige ro click mikonim, ghablia bayad styleshon bere
+                $(".btn-add-element").removeClass("element-selected text-primary");
                 $(".element-editing").removeClass("element-editing");
                 $(".element-editing-dashed").removeClass("element-editing-dashed");
-                $("#form_properties").html();
-                selected_element = undefined;
-            }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
-        }
-        editableElement_unselect_listener();
+                $(this).addClass("element-selected text-primary");
 
-        // init_all_select2_elements
-        function init_all_select2_elements () {
-            $(".select2-multiple").select2({
-                tags: true,
-                tokenSeparators: [',', ' ']
-            });
-            $(".select2-single").select2();
-        }
-        init_all_select2_elements();
-
-        // sidebars open/close
-        function open_rightSidebar() {
-            right_sidebar.css("right", "0");
-            left_sidebar.css("left", "-560px");
-            $("div.content-wrapper").css("margin-left", "0").css("margin-right", "560px");
-        }
-        function open_leftSidebar() {
-            right_sidebar.css("right", "-560px");
-            $("div.content-wrapper").css("margin-right", "0").css("margin-left", "560px");
-            left_sidebar.css("left", "0");
-        }
-        function close_bothSidebars(){
-            left_sidebar.css("left", "-560px");
-            right_sidebar.css("right", "-560px");
-            $("div.content-wrapper").css("margin-right", "0").css("margin-left", "0");
-        }
-
-        function uniqueId() {
-            return Math.round(new Date().getTime() + (Math.random() * 100));
-        }
-
-        // MAKE_PROPERTIES
-        MAKE_PROPERTIES = {
-            callout : () => {
-                let el_id = selected_element.attr("id") || "";
-                let el_title = selected_element.children("h5").children("span").html() || "";
-                let el_titleIcon = selected_element.children("h5").children("i").data("icon") || "";
-                let el_titleColor = '';
-                ['text-primary', 'text-danger', 'text-warning'].forEach(function(css_class) {
-                    let el_selected = (css_class === selected_element.children("h5").attr("class")) ? 'selected="selected"' : '';
-                    el_titleColor += `<option ${el_selected}>${css_class}</option>`;
-                });
-                let el_css = "";
-                selected_element.prop('className').split(' ')
-                    .filter( (i) => { return (i !== 'callout' && i !== 'element-is-editable' && i !== 'element-editing'  && i !== 'callout-info' && i !== 'callout-danger' && i !== 'callout-warning') } )
-                    .forEach(function(css_class) {
-                        el_css += `<option selected="selected">${css_class}</option>`;
-                    });
-                let el_content = selected_element.children("div").html() || "";
-                let el_borderColor = '';
-                ['callout-info', 'callout-danger', 'callout-warning'].forEach(function(css_class) {
-                    let selected = (css_class === selected_element.data("border-color")) ? 'selected="selected"' : '';
-                    el_borderColor += `<option ${selected}>${css_class}</option>`;
-                });
-                let col_dir = (selected_element.parent().attr("dir") === "ltr") ? "checked" : "";
-                let col_css = "";
-                selected_element.parent().prop('className').split(' ')
-                    .filter( (i) => { return (i !== 'text-left' && i !== 'text-right' && i !== 'element-editing-dashed') } )
-                    .forEach(function(css_class) {
-                        col_css += `<option selected="selected">${css_class}</option>`;
-                    });
-                let row_css = "";
-                selected_element.parent().parent().prop('className').split(' ')
-                    .filter( (i) => { return (i !== 'row' && i !== 'element-editing-dashed') } )
-                    .forEach(function(css_class) {
-                        row_css += `<option selected="selected">${css_class}</option>`;
-                    });
-
-                let properties_html =
-                    `<h5 class="text-center">Element properties</h5><div class="sidebar-divider"></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="el_id" type="text" value="${el_id}" autocomplete="off"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="el_title" class="form-control" type="text" value="${el_title}"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="el_titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${el_titleIcon}"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="el_titleColor" class="select2-single">${el_titleColor}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple el_css" multiple="multiple">${el_css}</select></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="el_content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${el_content}</textarea></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="el_borderColor" class="select2-single">${el_borderColor}</select></div></div>
-                            <h5 class="text-center mt-5">Column properties</h5><div class="sidebar-divider"></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Dir:</h6></div><div class="col-9"><input name="col_dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" ${col_dir} data-on="LTR" data-off="RTL" data-onstyle="success" data-offstyle="light"></div></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple col_css" multiple="multiple">${col_css}</select></div></div>
-                            <h5 class="text-center mt-5">Row properties</h5><div class="sidebar-divider"></div>
-                            <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple row_css" multiple="multiple">${row_css}</select></div></div>
-                        `;
-
-                return properties_html;
-            },
-        };
-
-        // Update Properties
-        right_sidebar.on('submit','#form_properties',function(e){
-            e.preventDefault();
-            let formData = $('#form_properties').serializeArray();
-            let propertiesData = {};
-            for (let i=0; i < formData.length; i++){
-                propertiesData[formData[i].name] = formData[i].value;
-            }
-            propertiesData.el_css = $("#form_properties .el_css").select2("val");
-            propertiesData.col_css = $("#form_properties .col_css").select2("val");
-            propertiesData.row_css = $("#form_properties .row_css").select2("val");
-
-            selected_element.parent().parent().replaceWith( LDB_BUILDER.callout(propertiesData) );
-            editableElement_unselect_listener();
-            $('body').click();
-        });
-
-        // Toolbar - delete
-        right_sidebar.on('click','.toolbar-delete',function(e){
-            selected_element.parent().parent().prev().remove(); // remove btn_addElement
-            selected_element.parent().parent().remove(); // remove element
-            $('body').click();
-        });
-        // Toolbar - moveup
-        right_sidebar.on('click','.toolbar-moveup',function(e){
-            let addBtnBalayeElement = selected_element.parent().parent().prev();
-            let elementRow = selected_element.parent().parent();
-
-            let isFirstElement = addBtnBalayeElement.prev().length;
-
-            if (isFirstElement === 0) {
-                return false;
-            }
-            $(addBtnBalayeElement).insertBefore(addBtnBalayeElement.prev().prev());
-            $(elementRow).insertBefore(elementRow.prev().prev());
-        });
-        // Toolbar - movedown
-        right_sidebar.on('click','.toolbar-movedown',function(e){
-            let addBtnBalayeElement = selected_element.parent().parent().prev();
-            let elementRow = selected_element.parent().parent();
-
-            let isLastElement = elementRow.next("div.row").children(".btn-add-element").length;
-
-            if (isLastElement === 0) {
-                return false;
-            }
-            $(addBtnBalayeElement).insertAfter(addBtnBalayeElement.next().next().next());
-            $(elementRow).insertAfter(elementRow.next().next().next());
-        });
-        // Toolbar - duplicate
-        right_sidebar.on('click','.toolbar-duplicate',function(e){
-            let addBtnBalayeElement = selected_element.parent().parent().prev();
-            let elementRow = selected_element.parent().parent();
-            let newAddBtnBalayeElement = addBtnBalayeElement.clone();
-            let newElementRow = elementRow.clone();
-
-            $(newAddBtnBalayeElement).insertAfter(elementRow);
-            $(newElementRow).insertAfter(elementRow.next());
-
-            selected_element.click();
-        });
-
-        let myCar = new VisualHtmlEditor("arggg1", "arggg2");
-        // console.log( myCar.method1() );
-
-    });
-</script>
-
-
-{{-- unselect plugin --}}
-<script>
-    (function($) {
-
-        //when the user hits the escape key, it will trigger all outsideClick functions
-        $(document).on("keyup", function (e) {
-            if (e.which === 27) $('body').click(); //escape key
-        });
-
-        //The actual plugin
-        $.fn.outsideClick = function(callback, exclusions) {
-            let subject = this;
-
-            //test if exclusions have been set
-            let hasExclusions = typeof exclusions !== 'undefined';
-
-            //switches click event with touch event if on a touch device
-            let ClickOrTouchEvent = "ontouchend" in document ? "touchend" : "click";
-
-            $('body').on(ClickOrTouchEvent, function(event) {
-                //click target does not contain subject as a parent
-                let clickedOutside = !$(event.target).closest(subject).length;
-
-                //click target was on one of the excluded elements
-                let clickedExclusion = $(event.target).closest(exclusions).length;
-
-                let testSuccessful;
-
-                if (hasExclusions) {
-                    testSuccessful = clickedOutside && !clickedExclusion;
+                if ($(this).parent().hasClass("empty-row")) {
+                    left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['callout']));
                 } else {
-                    testSuccessful = clickedOutside;
+                    left_sidebar.html(LDB_BUILDER.show_leftSidebar_elements(['row', 'callout']));
                 }
-
-                if(testSuccessful) {
-                    callback.call(subject, event);
-                }
+                selected_element = $(this);
             });
 
-            return this;
-        };
+            // unselect Add Element +
+            function emptyRow_unselect_listener (){
+                $('.btn-add-element').outsideClick(function(event){
+                    close_bothSidebars();
+                    $(this).removeClass("element-selected text-primary");
+                    left_sidebar.html($('<h6 class="text-center">Select Something</h6><div class="sidebar-divider"></div>'));
+                    selected_element = undefined;
+                }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
+            }
+            emptyRow_unselect_listener();
 
-    }(jQuery));
-</script>
+            // create element from left-sidebar
+            left_sidebar.on("click", ".preview-element" , function (e){
+                let parentRow = selected_element.parent();
+                if (parentRow.hasClass("empty-row")) {
+                    let col_width = 'col-' + (12 / parentRow.children().length);
+                    let newElement_mockup = LDB_BUILDER[$(this).data('preview-element-type')]();
+                    let removedParent_from_newElement = newElement_mockup
+                        .replace('<section class="row ">', '')
+                        .replace('</section>', '')
+                        .replace('col-12', col_width);
+                    selected_element.replaceWith(removedParent_from_newElement);
+                    // remove attr and style from parentRow after all cols filled
+                    if (parentRow.children('.btn-add-element').length === 0) {
+                        parentRow.removeClass("empty-row");
+                        parentRow.removeAttr("data-preview-element-type");
+                    }
+                } else {
+                    parentRow.before(LDB_BUILDER[$(this).data('preview-element-type')]());
+                    parentRow.prev().before(LDB_BUILDER.show_btn_addElement({invis : true}));
+                }
+                // attach fucking listener to new elements
+                emptyRow_unselect_listener();
+                editableElement_unselect_listener();
+                // remove selection
+                $('body').click();
+            });
+
+
+            // select editable element
+            $(div_output).on("click", ".element-is-editable" , function (e){
+                selected_element = $(this);
+                right_sidebar.children("form").html("");
+                open_rightSidebar();
+                $(".btn-add-element").removeClass("element-selected text-primary");
+                $(".element-editing").removeClass("element-editing");
+                $(".element-editing-dashed").removeClass("element-editing-dashed");
+                selected_element.addClass("element-editing");
+                selected_element.parent().addClass("element-editing-dashed");
+                selected_element.parent().parent().addClass("element-editing-dashed");
+
+                // append properties based on (element-type)
+                right_sidebar.children("form").append(MAKE_PROPERTIES[selected_element.data('element-type')]());
+                // append updateBtn
+                right_sidebar.children("form").append($('<div class="row mt-5"><div class="col-12"><button class="form-control btn btn-success" type="submit">Update</button></div></div>'));
+                // reinit listeners
+                $('.bootstrap-toggle').bootstrapToggle();
+                init_all_select2_elements();
+                init_all_ckeditor_elements();
+            });
+
+            // unselect editable element
+            function editableElement_unselect_listener (){
+                $('.element-is-editable').outsideClick(function(event){
+                    close_bothSidebars();
+                    $(".element-editing").removeClass("element-editing");
+                    $(".element-editing-dashed").removeClass("element-editing-dashed");
+                    $("#form_properties").html();
+                    selected_element = undefined;
+                }, "#sidebar-right, .element-is-editable, #sidebar-left, .btn-add-element, span.select2-selection__choice__remove");
+            }
+            editableElement_unselect_listener();
+
+            // init_all_select2_elements
+            function init_all_select2_elements () {
+                $(".select2-multiple").select2({
+                    tags: true,
+                    tokenSeparators: [',', ' ']
+                });
+                $(".select2-single").select2();
+            }
+            init_all_select2_elements();
+
+            // sidebars open/close
+            function open_rightSidebar() {
+                right_sidebar.css("right", "0");
+                left_sidebar.css("left", "-560px");
+                $("div.content-wrapper").css("margin-left", "0").css("margin-right", "560px");
+            }
+            function open_leftSidebar() {
+                right_sidebar.css("right", "-560px");
+                $("div.content-wrapper").css("margin-right", "0").css("margin-left", "560px");
+                left_sidebar.css("left", "0");
+            }
+            function close_bothSidebars(){
+                left_sidebar.css("left", "-560px");
+                right_sidebar.css("right", "-560px");
+                $("div.content-wrapper").css("margin-right", "0").css("margin-left", "0");
+            }
+
+            function uniqueId() {
+                return Math.round(new Date().getTime() + (Math.random() * 100));
+            }
+
+            // MAKE_PROPERTIES
+            MAKE_PROPERTIES = {
+                callout : () => {
+                    let el_id = selected_element.attr("id") || "";
+                    let el_title = selected_element.children("h5").children("span").html() || "";
+                    let el_titleIcon = selected_element.children("h5").children("i").data("icon") || "";
+                    let el_titleColor = '';
+                    ['text-primary', 'text-danger', 'text-warning'].forEach(function(css_class) {
+                        let el_selected = (css_class === selected_element.children("h5").attr("class")) ? 'selected="selected"' : '';
+                        el_titleColor += `<option ${el_selected}>${css_class}</option>`;
+                    });
+                    let el_css = "";
+                    selected_element.prop('className').split(' ')
+                        .filter( (i) => { return (i !== 'callout' && i !== 'element-is-editable' && i !== 'element-editing'  && i !== 'callout-info' && i !== 'callout-danger' && i !== 'callout-warning') } )
+                        .forEach(function(css_class) {
+                            el_css += `<option selected="selected">${css_class}</option>`;
+                        });
+                    let el_content = selected_element.children("div").html() || "";
+                    let el_borderColor = '';
+                    ['callout-info', 'callout-danger', 'callout-warning'].forEach(function(css_class) {
+                        let selected = (css_class === selected_element.data("border-color")) ? 'selected="selected"' : '';
+                        el_borderColor += `<option ${selected}>${css_class}</option>`;
+                    });
+                    let col_dir = (selected_element.parent().attr("dir") === "ltr") ? "checked" : "";
+                    let col_css = "";
+                    selected_element.parent().prop('className').split(' ')
+                        .filter( (i) => { return (i !== 'text-left' && i !== 'text-right' && i !== 'element-editing-dashed') } )
+                        .forEach(function(css_class) {
+                            col_css += `<option selected="selected">${css_class}</option>`;
+                        });
+                    let row_css = "";
+                    selected_element.parent().parent().prop('className').split(' ')
+                        .filter( (i) => { return (i !== 'row' && i !== 'element-editing-dashed') } )
+                        .forEach(function(css_class) {
+                            row_css += `<option selected="selected">${css_class}</option>`;
+                        });
+
+                    let properties_html =
+                        `<h5 class="text-center">Element properties</h5><div class="sidebar-divider"></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Id:</h6></div><div class="col-9"><input class="form-control" name="el_id" type="text" value="${el_id}" autocomplete="off"></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title:</h6></div><div class="col-9"><input name="el_title" class="form-control" type="text" value="${el_title}"></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Icon:</h6></div><div class="col-9"><input name="el_titleIcon" class="form-control" type="text" placeholder="Example : fa-info" value="${el_titleIcon}"></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Title Color:</h6></div><div class="col-9"><select name="el_titleColor" class="select2-single">${el_titleColor}</select></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple el_css" multiple="multiple">${el_css}</select></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Content:</h6></div><div class="col-9"><textarea name="el_content" class="ck-edit" id="${uniqueId()}" rows="10" cols="80" dir="rtl">${el_content}</textarea></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Border Color:</h6></div><div class="col-9"><select name="el_borderColor" class="select2-single">${el_borderColor}</select></div></div>
+                                <h5 class="text-center mt-5">Column properties</h5><div class="sidebar-divider"></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Dir:</h6></div><div class="col-9"><input name="col_dir" class="form-control bootstrap-toggle" type="checkbox" data-toggle="toggle" ${col_dir} data-on="LTR" data-off="RTL" data-onstyle="success" data-offstyle="light"></div></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple col_css" multiple="multiple">${col_css}</select></div></div>
+                                <h5 class="text-center mt-5">Row properties</h5><div class="sidebar-divider"></div>
+                                <div class="row mt-3"><div class="col-3 mt-2 text-left"><h6>Css Class:</h6></div><div class="col-9"><select class="select2-multiple row_css" multiple="multiple">${row_css}</select></div></div>
+                            `;
+
+                    return properties_html;
+                },
+            };
+
+            // Update Properties
+            right_sidebar.on('submit','#form_properties',function(e){
+                e.preventDefault();
+                let formData = $('#form_properties').serializeArray();
+                let propertiesData = {};
+                for (let i=0; i < formData.length; i++){
+                    propertiesData[formData[i].name] = formData[i].value;
+                }
+                propertiesData.el_css = $("#form_properties .el_css").select2("val");
+                propertiesData.col_css = $("#form_properties .col_css").select2("val");
+                propertiesData.row_css = $("#form_properties .row_css").select2("val");
+
+                selected_element.parent().parent().replaceWith( LDB_BUILDER.callout(propertiesData) );
+                editableElement_unselect_listener();
+                $('body').click();
+            });
+
+            // Toolbar - delete
+            right_sidebar.on('click','.toolbar-delete',function(e){
+                selected_element.parent().parent().prev().remove(); // remove btn_addElement
+                selected_element.parent().parent().remove(); // remove element
+                $('body').click();
+            });
+            // Toolbar - moveup
+            right_sidebar.on('click','.toolbar-moveup',function(e){
+                let addBtnBalayeElement = selected_element.parent().parent().prev();
+                let elementRow = selected_element.parent().parent();
+
+                let isFirstElement = addBtnBalayeElement.prev().length;
+
+                if (isFirstElement === 0) {
+                    return false;
+                }
+                $(addBtnBalayeElement).insertBefore(addBtnBalayeElement.prev().prev());
+                $(elementRow).insertBefore(elementRow.prev().prev());
+            });
+            // Toolbar - movedown
+            right_sidebar.on('click','.toolbar-movedown',function(e){
+                let addBtnBalayeElement = selected_element.parent().parent().prev();
+                let elementRow = selected_element.parent().parent();
+
+                let isLastElement = elementRow.next("div.row").children(".btn-add-element").length;
+
+                if (isLastElement === 0) {
+                    return false;
+                }
+                $(addBtnBalayeElement).insertAfter(addBtnBalayeElement.next().next().next());
+                $(elementRow).insertAfter(elementRow.next().next().next());
+            });
+            // Toolbar - duplicate
+            right_sidebar.on('click','.toolbar-duplicate',function(e){
+                let addBtnBalayeElement = selected_element.parent().parent().prev();
+                let elementRow = selected_element.parent().parent();
+                let newAddBtnBalayeElement = addBtnBalayeElement.clone();
+                let newElementRow = elementRow.clone();
+
+                $(newAddBtnBalayeElement).insertAfter(elementRow);
+                $(newElementRow).insertAfter(elementRow.next());
+
+                selected_element.click();
+            });
+
+            let myCar = new VisualHtmlEditor("arggg1", "arggg2");
+            // console.log( myCar.method1() );
+
+        });
+    </script>
+    {{-- unselect plugin --}}
+    <script>
+        (function($) {
+
+            //when the user hits the escape key, it will trigger all outsideClick functions
+            $(document).on("keyup", function (e) {
+                if (e.which === 27) $('body').click(); //escape key
+            });
+
+            //The actual plugin
+            $.fn.outsideClick = function(callback, exclusions) {
+                let subject = this;
+
+                //test if exclusions have been set
+                let hasExclusions = typeof exclusions !== 'undefined';
+
+                //switches click event with touch event if on a touch device
+                let ClickOrTouchEvent = "ontouchend" in document ? "touchend" : "click";
+
+                $('body').on(ClickOrTouchEvent, function(event) {
+                    //click target does not contain subject as a parent
+                    let clickedOutside = !$(event.target).closest(subject).length;
+
+                    //click target was on one of the excluded elements
+                    let clickedExclusion = $(event.target).closest(exclusions).length;
+
+                    let testSuccessful;
+
+                    if (hasExclusions) {
+                        testSuccessful = clickedOutside && !clickedExclusion;
+                    } else {
+                        testSuccessful = clickedOutside;
+                    }
+
+                    if(testSuccessful) {
+                        callback.call(subject, event);
+                    }
+                });
+
+                return this;
+            };
+
+        }(jQuery));
+    </script>
+
 </body>
 </html>

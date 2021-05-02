@@ -13,7 +13,7 @@ use App\Http\Controllers\LaravelController;
 |
 */
 
-Route::view('/', 'dashboard')->name('dashboard');
+Route::view('/', 'dashboard.dashboard')->name('dashboard');
 
 Route::view('laravel/newproject',   'laravel.newproject')->name('laravel.newproject');
 Route::view('laravel/front',        'laravel.front')->name('laravel.front');
