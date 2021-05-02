@@ -36,10 +36,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <style>
-        #page .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        #div_output .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
             color: white !important;
         }
-        #page .card-light:not(.card-outline) .card-header {
+        #div_output .card-light:not(.card-outline) .card-header {
             background-color: #f3f5f7;
         }
         .callout.callout-info {
@@ -232,17 +232,11 @@
         </aside>
         <!-- Main content -->
         <div class="content-wrapper">
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12" id="page">
-                            <section class="row">
-                                <div class="col-12 text-left ltr" id="div_output"></div>
-                            </section>
-                        </div>
-                    </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-left ltr" id="div_output"></div>
                 </div>
-            </section>
+            </div>
         </div>
         <!-- /.content -->
     </div>
